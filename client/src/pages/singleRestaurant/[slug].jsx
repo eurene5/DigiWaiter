@@ -1,13 +1,7 @@
 import HeaderSingleRestaurant from '@/components/singleRestaurant/HeaderSingleRestaurant'
 import FooterSingleRestaurant from '@/components/singleRestaurant/FooterSingleRestaurant'
 import MainSingleRestaurant from '@/components/singleRestaurant/MainSingleRestaurant'
-import {
-    getOneRestaurant, 
-    getMenuForOneRestaurant, 
-    getCategorieMenu, 
-    getSingleMenu 
-} from '@/Services'
-import { useEffect, useState } from 'react'
+import { getMenuForOneRestaurant, getOneRestaurant } from '@/Services'
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
@@ -19,9 +13,24 @@ import { useQuery } from 'react-query'
 const Page = () => {
     const router = useRouter()
     const slug = router.query.slug
-    const queryKey = ['restaurant']
-    const {data} = useQuery(queryKey, () => getOneRestaurant(slug))
-    console.log(slug, data);
+    const {data: restaurant, isLoading: restaurantLoading, isError: restaurantError} = useQuery({
+        queryKey: ['restaurant', slug],
+        queryFn: () => getOneRestaurant(String(slug)),
+        enabled: slug !== undefined,
+    })
+    if(restaurantLoading) {
+        return (
+            <div>
+                <svg className='animate-spin h-6 w-6 mx-auto'></svg>
+                Loading...
+            </div>
+        )
+    }
+    if(restaurantError) {
+        return (
+            <p>something went wrong</p>
+        )
+    }
 
     //maintenance
     // const [restaurant, setRestaurant] = useState(null)
@@ -30,11 +39,11 @@ const Page = () => {
     // useEffect(() => {
     //     getOneRestaurant(slug).then(setRestaurant)
     // }, [slug])
-    
+
     return (
         <> 
-            {/* <HeaderSingleRestaurant currentPage={restaurant[0].name} imageRestaurant={`/./upload/${restaurant[0].medias}`} /> */}
-            {/* <MainSingleRestaurant datas={categories} data2={menuList} /> */}
+            <HeaderSingleRestaurant currentPage={restaurant[0]?.name} imageRestaurant={`/./upload/${restaurant[0]?.medias}`} />
+            <MainSingleRestaurant restaurant={restaurant[0]?.name} />
             <FooterSingleRestaurant/>
         </>
     )

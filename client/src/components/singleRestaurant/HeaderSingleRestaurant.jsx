@@ -1,9 +1,10 @@
 import React from "react";
-import Link from 'next/link'
 import Image from "next/image";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Link } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const HeaderSingleRestaurant = ({currentPage, imageRestaurant}) => {
+    const route = useRouter()
     return (
         <header>
             <Box
@@ -12,7 +13,7 @@ const HeaderSingleRestaurant = ({currentPage, imageRestaurant}) => {
                 backgroundImage={`url('${imageRestaurant}')`}
                 backgroundSize='cover'
             >
-                <Link href='/' position='absolute' left='12px' top='' className='absolute left-3 top-3'>
+                <Link onClick={() => route.back()} position='absolute' left='12px' top='' className='absolute left-3 top-3'>
                     <Image alt='Back-Icon' width={40} height={40} src='/./btn-quit.svg' />
                 </Link>
             </Box>
