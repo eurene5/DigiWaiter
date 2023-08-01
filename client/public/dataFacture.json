@@ -1,0 +1,6 @@
+[
+    {"nom":"Tasty fre tacos", "quantite" : 2, "prix":15000},
+    {"nom":"Panini", "quantite" : 2, "prix":15000},
+    {"nom":"Tasty fren tacos", "quantite" : 2, "prix":15000},
+    {"nom":"Tasty fren tacos", "quantite" : 2, "prix":15000}
+]
