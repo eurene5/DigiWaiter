@@ -26,7 +26,7 @@ export function getOneRestaurant(slug) {
 
 export function getMenuForOneRestaurant(restaurant) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/menus/${etablissement}`)
+        axios.get(`http://localhost:8000/api/menus/${restaurant}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)

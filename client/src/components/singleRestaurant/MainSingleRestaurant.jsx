@@ -2,56 +2,67 @@ import { Box, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-u
 import React from "react";
 import ProductModal from "./ProductModal";
 import DrinkModal from "./DrinkModal";
-import { useQuery } from "react-query";
+import { useQueries } from "react-query";
 import { getCategorieMenu, getMenuForOneRestaurant } from "@/Services";
 
 const MainSingleRestaurant = ({restaurant}) => {
-  const categories = useQuery(['restaurant', restaurant], getCategorieMenu(restaurant), {enabled: !!restaurant})
-  const menu = useQuery(['restaurant', restaurant], getMenuForOneRestaurant(restaurant), {enabled: !!restaurant})
+
+  const results = useQueries([
+      { queryKey: ['categories', 1], queryFn: () => getCategorieMenu(restaurant), enabled: !!restaurant },
+      { queryKey: ['menus', 2], queryFn: () => getMenuForOneRestaurant(restaurant), enabled: !!restaurant }
+  ])
+
+  const categories = results[0].data
+  const menus = results[1].data
+
+  // console.log(categories);
   
 
-  const categorieNameList = () => {
-    categories?.map(categorie => {
-      return (
-        <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
-      )
-    })
-  }
-  console.log(categorieNameList())
 
-  const categorieList = () => {
-    categories.map(categorie => {
-      return (
-        <TabPanel className='Nouveautés' >
-              <Heading 
-                as='h5' 
-                fontSize='15px' 
-                textAlign='start' 
-                borderBottom='1px solid #F5F5F5' 
-                mb='10px'
-                pb='3px'
-              >
-                {categorie.name}
-              </Heading>
+  // const categories = useQuery(['restaurant'], getCategorieMenu(restaurant), {enabled: !!restaurant})
+  // const menu = useQuery(['restaurant', restaurant], getMenuForOneRestaurant(restaurant), {enabled: !!restaurant})
+
+  
+  // const categorieNameList = () => {
+  //   categories?.map(categorie => {
+  //     return (
+  //       <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
+  //     )
+  //   })
+  // }
+  // const categorieList = () => {
+  //   categories.map(categorie => {
+  //     return (
+  //       <TabPanel className='Nouveautés' >
+  //             <Heading 
+  //               as='h5' 
+  //               fontSize='15px' 
+  //               textAlign='start' 
+  //               borderBottom='1px solid #F5F5F5' 
+  //               mb='10px'
+  //               pb='3px'
+  //             >
+  //               {categorie.name}
+  //             </Heading>
               
-              <Box className={`${categorie.name != 'Boissons' ? '' : 'flex flex-wrap justify-center px-[25px]'}`}  >
-                {data2.map(menu => {
-                  if(menu.categorie.name == categorie.name) {
-                    if(categorie.name != 'Boissons') {
-                      <ProductModal />
-                    } else {
-                      <DrinkModal src={`/./upload/${menu.medias}`} price={menu.price} name={menu.name} />
-                    }
-                  }
-                })}
-                {/* <ProductModal />
-                <ProductModal />
-                <ProductModal /> */}
-              </Box>
-            </TabPanel>
-      )
-    })
-  }
+  //             <Box className={`${categorie.name != 'Boissons' ? '' : 'flex flex-wrap justify-center px-[25px]'}`}  >
+  //               {data2.map(menu => {
+  //                 if(menu.categorie.name == categorie.name) {
+  //                   if(categorie.name != 'Boissons') {
+  //                     <ProductModal />
+  //                   } else {
+  //                     <DrinkModal src={`/./upload/${menu.medias}`} price={menu.price} name={menu.name} />
+  //                   }
+  //                 }
+  //               })}
+  //               {/* <ProductModal />
+  //               <ProductModal />
+  //               <ProductModal /> */}
+  //             </Box>
+  //           </TabPanel>
+  //     )
+  //   })
+  // }
 
   return(
     <Box>
@@ -65,17 +76,46 @@ const MainSingleRestaurant = ({restaurant}) => {
           bgColor='#FFF'
           color='#394D5F'
         >
-          {categorieNameList}
-          {/* {datas.map(categorie => {
-            <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
-          })} */}
-          {/* <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>Pizzas</Tab>
-          <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>Tacos</Tab>
-          <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>Boissons</Tab> */}
+          {
+            categories?.map(categorie => {
+              return (
+                <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
+              )
+            })
+          }
         </TabList>
 
         <TabPanels>
-          {categorieList}
+          {
+            categories.map(categorie => {
+              return (
+                <TabPanel className='Nouveautés' >
+                  <Heading 
+                    as='h5' 
+                    fontSize='15px' 
+                    textAlign='start' 
+                    borderBottom='1px solid #F5F5F5' 
+                    mb='10px'
+                    pb='3px'
+                  >
+                    {categorie.name}
+                  </Heading>
+                  
+                  <Box className={`${categorie.name != 'Boissons' ? '' : 'flex flex-wrap justify-center px-[25px]'}`}  >
+                    {menus.map(menu => {
+                      if(menu.categorie.name == categorie.name) {
+                        if(categorie.name != 'Boissons') {
+                          <ProductModal />
+                        } else {
+                          <DrinkModal src={`/./upload/${menu.medias}`} price={menu.price} name={menu.name} />
+                        }
+                      }
+                    })}
+                  </Box>
+                </TabPanel>
+              )
+            })
+          }
           {/* {datas.map(categorie => {
           <TabPanel className='Nouveautés' >
               <Heading 

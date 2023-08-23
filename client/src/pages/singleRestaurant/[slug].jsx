@@ -6,10 +6,6 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 
-// const restaurant = getOneRestaurant(slug)
-// const menuList = getMenuForOneRestaurant(restaurant.name)
-// const categories = getCategorieMenu(restaurant.name)
-
 const Page = () => {
     const router = useRouter()
     const slug = router.query.slug
@@ -31,14 +27,7 @@ const Page = () => {
             <p>something went wrong</p>
         )
     }
-
-    //maintenance
-    // const [restaurant, setRestaurant] = useState(null)
-    // var slug = null
-    // slug = router.query.slug
-    // useEffect(() => {
-    //     getOneRestaurant(slug).then(setRestaurant)
-    // }, [slug])
+    // console.log(restaurant);
 
     return (
         <> 
