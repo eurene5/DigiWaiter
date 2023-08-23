@@ -87,7 +87,7 @@ const MainSingleRestaurant = ({restaurant}) => {
 
         <TabPanels>
           {
-            categories.map(categorie => {
+            categories?.map(categorie => {
               return (
                 <TabPanel className='Nouveautés' >
                   <Heading 
@@ -105,9 +105,9 @@ const MainSingleRestaurant = ({restaurant}) => {
                     {menus.map(menu => {
                       if(menu.categorie.name == categorie.name) {
                         if(categorie.name != 'Boissons') {
-                          <ProductModal />
+                          return <ProductModal key={menu._id} menu={menu} />
                         } else {
-                          <DrinkModal src={`/./upload/${menu.medias}`} price={menu.price} name={menu.name} />
+                          return <DrinkModal key={menu._id} src={`/./upload/${menu.medias}`} price={menu.price} name={menu.name} />
                         }
                       }
                     })}

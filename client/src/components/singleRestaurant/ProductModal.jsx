@@ -14,7 +14,8 @@ import {
     Image
 } from '@chakra-ui/react'
 
-export default function ProductModal(img, name, description, prix){
+export default function ProductModal({menu}){
+    console.log(menu);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const size = ['sm']
 
@@ -53,7 +54,7 @@ export default function ProductModal(img, name, description, prix){
                     </button>
                 </div>
                 <Button className="mt-4 w-full" textColor={"white"} backgroundColor={"gray.400"}>
-                    {count*prix} Ar
+                    {count*menu.price} Ar
                 </Button>
             </div>
         );
@@ -61,7 +62,7 @@ export default function ProductModal(img, name, description, prix){
     
     return (
         <>
-        <ProductSingleRestaurant onClick={onOpen} name={name} description={description} price={prix} image={img}  />
+        <ProductSingleRestaurant onClick={onOpen} menu={menu}  />
         <Modal blockScrollOnMount={false} isOpen={isOpen} size={size} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent rounded="none">
@@ -75,7 +76,7 @@ export default function ProductModal(img, name, description, prix){
                 borderBottom: "none",
                 }}
             >
-                <Image alt="" w='100%' h='100%' src={img}></Image> 
+                <Image alt="" w='100%' h='100%' src={`/./upload/${menu.medias}`}></Image> 
             </ModalHeader>
 
             <ModalCloseButton
@@ -93,10 +94,10 @@ export default function ProductModal(img, name, description, prix){
                 justifyContent="center"
             >
                 <p className='mt-1 font-bold'>
-                    {name}
+                    {menu.name}
                 </p>
                 <p className='mt-1 text-[11px]'>
-                    {description}  
+                    {menu.ingredients}  
                 </p>
                 <NumberCounter/>
             </ModalBody>

@@ -1,7 +1,7 @@
 import { Box, Card, CardBody, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 
-const ProductSingleRestaurant = ({onClick, image, name, description, price}) => {
+const ProductSingleRestaurant = ({onClick, menu}) => {
   return(
     <Box mb='10px'>
         <Card
@@ -15,11 +15,11 @@ const ProductSingleRestaurant = ({onClick, image, name, description, price}) => 
         >
             <Stack>
                 <CardBody textAlign='start' pt='12px' ps='8px' pb='10px'>
-                    <Heading fontSize='15px' color='#000000B2' mb='4px'>{name}</Heading>
+                    <Heading fontSize='15px' color='#000000B2' mb='4px'>{menu.name}</Heading>
                     <Text color='#00000099' fontSize='12px'>
-                        {description}
+                        {menu.ingredients}
                     </Text>
-                    <Text color='#394D5F' fontSize='12px' fontWeight='bold' mt='5px'>{price} Ar</Text>
+                    <Text color='#394D5F' fontSize='12px' fontWeight='bold' mt='5px'>{menu.price} Ar</Text>
                 </CardBody>
 
             </Stack>
@@ -27,7 +27,7 @@ const ProductSingleRestaurant = ({onClick, image, name, description, price}) => 
             <Image 
                 objectFit='cover'
                 maxW='125px'
-                src={`/./upload/${image}`}
+                src={`/./upload/${menu.medias}`}
             />
         </Card>
     </Box>
