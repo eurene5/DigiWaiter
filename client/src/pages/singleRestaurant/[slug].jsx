@@ -9,11 +9,13 @@ import { useQuery } from 'react-query'
 const Page = () => {
     const router = useRouter()
     const slug = router.query.slug
-    const {data: restaurant, isLoading: restaurantLoading, isError: restaurantError} = useQuery({
+    const {data: restaurantData, isLoading: restaurantLoading, isError: restaurantError} = useQuery({
         queryKey: ['restaurant', slug],
         queryFn: () => getOneRestaurant(String(slug)),
         enabled: slug !== undefined,
+        staleTime: 60_000 * 60,
     })
+    const restaurant = restaurantData || []
     if(restaurantLoading) {
         return (
             <div>

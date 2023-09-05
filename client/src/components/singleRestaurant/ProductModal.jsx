@@ -15,7 +15,6 @@ import {
 } from '@chakra-ui/react'
 
 export default function ProductModal({menu}){
-    console.log(menu);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const size = ['sm']
 

@@ -8,12 +8,12 @@ import { getCategorieMenu, getMenuForOneRestaurant } from "@/Services";
 const MainSingleRestaurant = ({restaurant}) => {
 
   const results = useQueries([
-      { queryKey: ['categories', 1], queryFn: () => getCategorieMenu(restaurant), enabled: !!restaurant },
-      { queryKey: ['menus', 2], queryFn: () => getMenuForOneRestaurant(restaurant), enabled: !!restaurant }
+      { queryKey: ['categories', 1], queryFn: () => getCategorieMenu(restaurant), enabled: !!restaurant, staleTime: 60_000 },
+      { queryKey: ['menus', 2], queryFn: () => getMenuForOneRestaurant(restaurant), enabled: !!restaurant, staleTime: 60_000 }
   ])
 
-  const categories = results[0].data
-  const menus = results[1].data
+  const categories = results[0].data || []
+  const menus = results[1].data || []
 
   // console.log(categories);
   
@@ -79,7 +79,7 @@ const MainSingleRestaurant = ({restaurant}) => {
           {
             categories?.map(categorie => {
               return (
-                <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
+                <Tab key={categorie._id} _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
               )
             })
           }
@@ -89,7 +89,7 @@ const MainSingleRestaurant = ({restaurant}) => {
           {
             categories?.map(categorie => {
               return (
-                <TabPanel className='Nouveautés' >
+                <TabPanel key={categorie._id} className='Nouveautés' >
                   <Heading 
                     as='h5' 
                     fontSize='15px' 
