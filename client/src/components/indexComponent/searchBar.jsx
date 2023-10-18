@@ -1,23 +1,15 @@
 import React from "react";
-import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import {SearchIcon} from '@chakra-ui/icons'
+import { Image, InputGroup, Input, InputLeftElement } from "@chakra-ui/react";
+import { SearchIcon } from '@chakra-ui/icons'
 
-const Search = () =>{
-    <InputGroup>
-        <InputLeftElement pointerEvents='none'>
-            <SearchIcon color='gray.300'/>
-        </InputLeftElement>
-        <Input     
-            type="text"
-            focusBorderColor='green.400'
-            placeholder='Rechercher un restaurant' 
-            size="sm"
-        />
-    </InputGroup>
+export const SearchBar = () =>{
+    return (
+        <InputGroup mb='20px'>
+            <InputLeftElement pointerEvents='none'>
+                <Image src='/./icon _magnifying glass_.svg' width='17px' height='17px' />
+            </InputLeftElement>
+            <Input type='search' placeholder='Rechercher un plat'/>
+        </InputGroup>
+    )  
 }
 
-export const Searchbar =() =>{
-    <Box>
-        <Search/>
-    </Box>
-}

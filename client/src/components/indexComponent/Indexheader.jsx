@@ -15,7 +15,7 @@ export const Header = () =>{
             paddingX="30px"
         >
             <Link h="full" w="auto" href=""><Image alt="" h="full" w="auto" src="/./assets/indexImages/logo-accueil.png"></Image></Link>
-            <Link href="/"><Image alt="" src="/./icon-bag.svg"></Image></Link> 
+            <Image h='full' w='auto' src="/./assets/indexImages/ispm2.png"></Image>
         </Box>
     )
 }

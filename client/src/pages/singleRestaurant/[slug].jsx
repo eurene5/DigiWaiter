@@ -1,5 +1,5 @@
 import HeaderSingleRestaurant from '@/components/singleRestaurant/HeaderSingleRestaurant'
-import FooterSingleRestaurant from '@/components/singleRestaurant/FooterSingleRestaurant'
+import { Footer } from "@/components/indexComponent/Indexfooter";
 import MainSingleRestaurant from '@/components/singleRestaurant/MainSingleRestaurant'
 import { getMenuForOneRestaurant, getOneRestaurant } from '@/Services'
 import React from 'react'
@@ -35,7 +35,7 @@ const Page = () => {
         <> 
             <HeaderSingleRestaurant currentPage={restaurant[0]?.name} imageRestaurant={`/./upload/${restaurant[0]?.medias}`} />
             <MainSingleRestaurant restaurant={restaurant[0]?.name} />
-            <FooterSingleRestaurant/>
+            <Footer/>
         </>
     )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import {Box, Heading} from '@chakra-ui/react'
+import {Box, Heading, Text} from '@chakra-ui/react'
 import {RestaurantList } from './RestaurantList'
 import {RestaurantCarousel} from './restaurantCarousel'
-import { Searchbar } from './searchBar'
+import { SearchBar } from './searchBar'
 import { useRouter } from 'next/router'
 
 
@@ -10,9 +10,19 @@ export const MainIndex = ({datas}) => {
   const router = useRouter()
 
   return (
-    <Box mt="20px">
-      <Searchbar/>
-        <Box display='flex' flexWrap='wrap' justifyContent='center' px='20px' flex>
+    <Box mt="20px" px='20px'>
+        <Box mb='20px' >
+          <Text fontSize='16px' fontWeight='semibold' color='rgba(0, 0, 0, 0.8)'>
+            Bonjour;<br/>
+            Quel genre d'<Box as='span' color='#3FCB80' fontWeight='bold'>aventure culinaire</Box> aller vous <Box as='span' color='#3FCB80' fontWeight='bold'>expérimenter</Box> aujourd'hui
+          </Text>
+        </Box>
+        <SearchBar />
+        <Box>
+          <Text color='#394D5F' textTransform='uppercase' fontWeight='semibold'>Offres</Text>
+          {/* <RestaurantCarousel /> */}
+        </Box>
+        <Box display='flex' flexWrap='wrap' justifyContent='center'>
           {datas?.map(data => {
             return (
               <RestaurantList key={data._id} onClick={() => router.push(`singleRestaurant/${data.slug}`)} src={`/./upload/${data.medias}`} name={data.name}/>
@@ -32,7 +42,7 @@ export const MainIndex = ({datas}) => {
         >
           Mieux notés
         </Heading>
-        <RestaurantCarousel/>
+        {/* <RestaurantCarousel/> */}
     </Box>
   )
 }
