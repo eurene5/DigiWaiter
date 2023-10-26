@@ -34,9 +34,20 @@ const HeaderSingleRestaurant = ({currentPage, imageRestaurant}) => {
                 >
                     {currentPage}
                 </Heading>
-                <Box fontSize='12px' fontWeight='medium' opacity='0.8'>
-                    <Text>Ouverture : 09h30</Text>
-                    <Text>Fermeture : 18h30</Text>
+                <Box my='10px' fontSize='12px' fontWeight='medium' opacity='0.8' display='flex' justifyContent='space-between' px='15px'>
+                    <Box>
+                        <Text>Ouverture : 09h30</Text>
+                        <Text>Fermeture : 18h30</Text>
+                    </Box>
+                    <Box>
+                        <Box display='flex' alignItems='center'>
+                            <Image src='/./icon _star_.svg' width='15' height='15' /> 
+                            <Text ms='5px'>
+                                - 4.1 <Box as='span' color='#3FCB80' fontWeight='bold'>Excellent</Box>
+                            </Text>
+                        </Box>
+                        <Text>Voir les avis sur Kebn'Grill</Text>
+                    </Box>
                 </Box>
             </Box>
         </header>

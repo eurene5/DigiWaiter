@@ -75,7 +75,7 @@ export default function DrinkModal({src, price, name}){
                 borderBottom: "none",
                 }}
             >
-                <Image alt="" w='auto' h='200px' mx='auto' className='w-full h-full' src={img}></Image> 
+                <Image alt="" w='auto' h='200px' mx='auto' className='w-full h-full' src={src}></Image> 
             </ModalHeader>
 
             <ModalCloseButton

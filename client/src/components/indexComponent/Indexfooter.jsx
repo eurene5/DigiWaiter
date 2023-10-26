@@ -13,6 +13,7 @@ export const Footer =()=>{
             bottom={0}
             bgColor='#394D5F'
             roundedTop="5px"
+            mt='20px'
             w='100%'
             h='70px'
             px='20px'

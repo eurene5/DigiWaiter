@@ -101,7 +101,7 @@ const MainSingleRestaurant = ({restaurant}) => {
                     {categorie.name}
                   </Heading>
                   
-                  <Box className={`${categorie.name != 'Boissons' ? '' : 'flex flex-wrap justify-center px-[25px]'}`}  >
+                  <Box className={` mb-16 ${categorie.name != 'Boissons' ? '' : 'flex flex-wrap gap-2 justify-center'}`}  >
                     {menus.map(menu => {
                       if(menu.categorie.name == categorie.name) {
                         if(categorie.name != 'Boissons') {
