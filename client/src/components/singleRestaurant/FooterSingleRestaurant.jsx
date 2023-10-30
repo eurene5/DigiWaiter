@@ -18,13 +18,13 @@ const FooterSingleRestaurant = () => {
         m={0}
     >
         <Link href='/'>
-            <Image w='34px' h='34px' src="/./icon _home_.svg"/>
+            <Image w='34px' h='34px' src="/./icon _home_.svg" alt=''/>
         </Link>
         <Link href='/'>
-            <Image w='34px' h='34px' src="icon _amarok cart view_.svg"/>
+            <Image w='34px' h='34px' src="icon _amarok cart view_.svg" alt=''/>
         </Link>
         <Link href='/'>
-            <Image w='34px' h='34px' src="icon _bills_.svg"/>
+            <Image w='34px' h='34px' src="icon _bills_.svg" alt=''/>
         </Link>
     </Box>
   )

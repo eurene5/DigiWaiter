@@ -25,6 +25,7 @@ const ProductSingleRestaurant = ({onClick, menu}) => {
             </Stack>
             
             <Image 
+                alt=''
                 objectFit='cover'
                 maxW='125px'
                 src={`/./upload/${menu.medias}`}

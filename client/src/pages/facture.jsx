@@ -24,7 +24,7 @@ const Page = () => {
                 display="flex" justifyContent="center"
                 width="100%" alignItems="center"
             >
-                <Button  width="90%" size="sm" backgroundColor="#3FCB80" color="White" p="25px 0px 25px 0px">Regler l'adition</Button>
+                <Button  width="90%" size="sm" backgroundColor="#3FCB80" color="White" p="25px 0px 25px 0px">Regler l&apos;adition</Button>
             </Box>
             <FooterSingleRestaurant/>
         </Box>

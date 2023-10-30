@@ -14,7 +14,7 @@ export const MainIndex = ({datas}) => {
         <Box mb='20px' >
           <Text fontSize='16px' fontWeight='semibold' color='rgba(0, 0, 0, 0.8)'>
             Bonjour;<br/>
-            Quel genre d'<Box as='span' color='#3FCB80' fontWeight='bold'>aventure culinaire</Box> aller vous <Box as='span' color='#3FCB80' fontWeight='bold'>expérimenter</Box> aujourd'hui
+            Quel genre d&apos;<Box as='span' color="#3FCB80" fontWeight='bold'>aventure culinaire</Box> aller vous <Box as='span' color="#3FCB80" fontWeight='bold'>expérimenter</Box> aujourd&apos;hui
           </Text>
         </Box>
         <SearchBar />

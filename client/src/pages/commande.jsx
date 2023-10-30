@@ -26,7 +26,7 @@ const Page = () => {
                             Mofifiier la commande
                         </Button>
                         <Button size="sm" backgroundColor="#3FCB80" color="#FFF" p="20px 0px 20px 0px" onClick={handleCommand}>
-                            <Image w='18px' h='18px' src="/./icon _amarok cart view_.svg" mr="5px"/>
+                            <Image alt='' w='18px' h='18px' src="/./icon _amarok cart view_.svg" mr="5px"/>
                             Commander
                         </Button>
                 </SimpleGrid>  
@@ -44,7 +44,7 @@ const Page = () => {
                             Mofifiier la commande
                         </Button>
                         <Button size="sm" backgroundColor="#3FCB80" color="#FFF" p="20px 0px 20px 0px" onClick={handleCommand}>
-                            <Image w='18px' h='18px' src="/./icon _amarok cart view_.svg" mr="5px"/>
+                            <Image alt='' w='18px' h='18px' src="/./icon _amarok cart view_.svg" mr="5px"/>
                             Commander
                         </Button>
                 </SimpleGrid>  

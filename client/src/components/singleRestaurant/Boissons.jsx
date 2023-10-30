@@ -8,6 +8,7 @@ const Boissons = ({src, price, name, onClick}) => {
             <Image
                 maxW='130px'
                 h='128px'
+                alt=''
                 objectFit='contain'
                 overflow='hidden'
                 src={src}

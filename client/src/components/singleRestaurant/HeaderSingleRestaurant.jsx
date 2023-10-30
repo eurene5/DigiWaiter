@@ -41,12 +41,12 @@ const HeaderSingleRestaurant = ({currentPage, imageRestaurant}) => {
                     </Box>
                     <Box>
                         <Box display='flex' alignItems='center'>
-                            <Image src='/./icon _star_.svg' width='15' height='15' /> 
+                            <Image src='/./icon _star_.svg' width='15' height='15' alt='' /> 
                             <Text ms='5px'>
                                 - 4.1 <Box as='span' color='#3FCB80' fontWeight='bold'>Excellent</Box>
                             </Text>
                         </Box>
-                        <Text>Voir les avis sur Kebn'Grill</Text>
+                        <Text>Voir les avis sur Kebn&apos;Grill</Text>
                     </Box>
                 </Box>
             </Box>
