@@ -4,14 +4,15 @@ import { MainIndex } from "@/components/indexComponent/mainIndex";
 import {Box} from '@chakra-ui/react';
 import { getGroupeRestaurant } from "@/Services";
 import { useQuery } from "react-query";
-
+import CheckPayement from "./checkout";
 const Page = () => {
     const {data} = useQuery("groureRestaurant", () => getGroupeRestaurant('Urbania'))
 
     return(
         <Box bgColor='#FFFFFFF2'>
             <Header/>
-            <MainIndex datas={data}/>
+            <CheckPayement />
+            {/* <MainIndex datas={data}/> */}
             <Footer/>
         </Box>
     )

@@ -1,7 +1,7 @@
 import { Box, Button, SimpleGrid, Image } from "@chakra-ui/react";
-import { Header } from "@/components/facture&commande/Header";
-import { Logo } from "@/components/facture&commande/Logo";
-import { Tableau } from "@/components/facture&commande/tableau";
+import { HeaderTitle } from "@/components/facture&commande UI/title";
+import { Logo } from "@/components/facture&commande UI/Logo";
+import { Tableau } from "@/components/facture&commande UI/tableau";
 import data from "public/dataFacture.json";
 import { useState } from "react";
 

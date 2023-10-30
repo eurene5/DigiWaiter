@@ -1,7 +1,7 @@
-import { Header} from "@/components/facture&commande/Header";
+import { HeaderTitle} from "@/components/facture&commande UI/title";
 import { Box, Button } from "@chakra-ui/react";
-import { Tableau } from "@/components/facture&commande/tableau";
-import { Logo } from "@/components/facture&commande/Logo";
+import { Tableau } from "@/components/facture&commande UI/tableau";
+import { Logo } from "@/components/facture&commande UI/Logo";
 import FooterSingleRestaurant from "@/components/singleRestaurant/FooterSingleRestaurant";
 import data from "public/dataFacture.json"
 import { useState } from "react";
@@ -10,7 +10,7 @@ const Page = () => {
     const [state, setState] = useState(data)
     return(
         <Box display="block" mb="120px" justifyContent="center">
-            <Header title="facture"/>
+            <HeaderTitle title="facture"/>
             <Box m="20px">
                 <Logo url={"/assets/logo-restaurantSingle.png"}/>
                 <Tableau data={state} />
