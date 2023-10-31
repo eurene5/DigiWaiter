@@ -39,13 +39,15 @@ export default function SignUp(){
                         p={"40px 10px 20px 0px"}
                     > Inscrivez-vous</Heading>
                     <Stack spacing="20px" w={"100%"} p={"20px 10px 20px 20px"} >
-                        <InputFrom type="text" placeholder={"Nom du restaurant"}><Icon as ={FaMailBulk}/></InputFrom>
-                        <InputFrom type="text" placeholder={"Food court (ex: Urbania, ...)"}><Icon as ={MdFastfood}/></InputFrom>
-                        <InputFrom type="text" placeholder={"Localisation"}><Icon as ={FaLocationArrow}/></InputFrom>
-                        <InputFrom type="email" placeholder={"Adresse Email"}><Icon as ={EmailIcon}/></InputFrom>
-                        <InputFrom type="tel" placeholder={"Numéro de téléphone"}><Icon as ={FaPhone}/></InputFrom>
-                        <InputFrom type="password" placeholder={"Entrer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>
-                        <InputFrom type="password" placeholder={"Confirmer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>
+                        <form action="">
+                            <InputFrom type="text" placeholder={"Nom du restaurant"}><Icon as ={FaMailBulk}/></InputFrom>
+                            <InputFrom type="text" placeholder={"Food court (ex: Urbania, ...)"}><Icon as ={MdFastfood}/></InputFrom>
+                            <InputFrom type="text" placeholder={"Localisation"}><Icon as ={FaLocationArrow}/></InputFrom>
+                            <InputFrom type="email" placeholder={"Adresse Email"}><Icon as ={EmailIcon}/></InputFrom>
+                            <InputFrom type="tel" placeholder={"Numéro de téléphone"}><Icon as ={FaPhone}/></InputFrom>
+                            <InputFrom type="password" placeholder={"Entrer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>
+                            <InputFrom type="password" placeholder={"Confirmer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>
+                        </form>
                         <Button variant={"solid"} color={"white"} bgColor="rgba(146, 227, 169, 1)" mb={"20px"}>S'inscrire</Button>
                     </Stack>
                     
