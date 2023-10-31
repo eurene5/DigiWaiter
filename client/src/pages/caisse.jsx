@@ -3,7 +3,7 @@ import Image from "next/image";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Icon } from "@chakra-ui/react";
 import {FaAppStore, FaHeartbeat} from "react-icons/fa"
-
+import AsideDashboard from "@/components/dashboard/AsideDashboard";
 import { 
     Box,
     Container,
@@ -19,7 +19,7 @@ import {
     SimpleGrid,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-
+import { FaStarOfDavid } from "react-icons/fa";
 
 const platsFavoris = [
     {name : "Tasty French Tacos", src : "/Rectangle 15.png"},
@@ -46,6 +46,7 @@ export default function Caisse(){
         borderRadius:"10px",
         boxShadow:'0px 2px 5px 0px rgba(0, 0, 0, 0.5)'
     }
+ 
     const sxTextTitle = {
         display:"block",
         as:"h2",
@@ -59,21 +60,20 @@ export default function Caisse(){
                 bg:"#A0A0A0"
         }
     }
-
+    
     return(
         <Flex
-         
         justifyContent={"center"}
         w={"100vw"}
         >
-            <Container 
+            <Box 
                 ml={0}
                 h={"100vh"} 
                 w={"20%"}
-                borderRight={"1px solid black"}
+                // borderRight={"1px solid black"}
             >
-                Aside
-            </Container>
+               <AsideDashboard /> 
+            </Box>
             <Grid 
                 templateAreas={`
                     "search search client"
@@ -91,24 +91,7 @@ export default function Caisse(){
                 <GridItem
                     area={'search'}
                 >
-                    <Flex justifyContent={"right"}>
-                        <InputGroup  w={"500px"} >
-                            <InputRightElement pointerEvents="">
-                                <SearchIcon color='gray.400' />
-                            </InputRightElement>
-                            <Input type='Text' placeholder='Rechercher une commande' border={"1px solid gray"} borderRadius={"10px"}/>
-                        </InputGroup>
-                    </Flex>
-                    
-                    <Box mt={"10px"} >
-                        <Text 
-                            sx={sxTextTitle}
-                        >
-                            <Icon as = {FaHeartbeat} />
-                            Les plats le plus commandé par les clients
-                        </Text>
-                        <ListPlats plats = {platsFavoris} />
-                    </Box>
+                    <SearchBar />
 
                 </GridItem>
 
@@ -123,8 +106,8 @@ export default function Caisse(){
                         Listes Des commandes
                     </Text>
                     <SimpleGrid 
-                    mt={"20px"} gridTemplateColumns={"1fr 1fr"} 
-                    borderRadius={"5px 5px 0px 0px"} 
+                        mt={"20px"} gridTemplateColumns={"1fr 1fr"} 
+                        borderRadius={"5px 5px 0px 0px"} 
                     >
                         <Button variant={"solid"} borderRadius={0} bg={"#394D5F"} color={"white"} _hover={{color : "black"}} >Commande en cours</Button>
                         <Button variant={"solid"} bg={"#3FCB80"} borderRadius={0} color={"white"} _hover={{color : "black"}}>Commande livré</Button>
@@ -154,15 +137,18 @@ export default function Caisse(){
                         >
                                 {clients.map((client)=>{
                                     return(
-                                        <Card m={"15px 10px 15px 10px"}  bg={"#D9D9D9"} p={"5px"} >
+                                        <Card m={"15px 10px 15px 10px"}  bg={"#D9D9D9"} p={"5px"} key={client.name} >
                                             <Text>{client.name}</Text>
                                             <Flex flexDir={"row"}>{Array(client.note)
                                                 .fill('')
                                                 .map((_, i) => (
-                                                <StarIcon
-                                                    key={i}
-                                                    color={"#3FCB80"}
-                                                    />
+                                                    <>
+                                                        <StarIcon
+                                                            key={i}
+                                                            color={"#3FCB80"}
+                                                        />
+                                                    </>
+                                                
                                                 ))}
                                             </Flex>
                                             <Text>{client.commentaire}</Text>
@@ -170,7 +156,6 @@ export default function Caisse(){
                                     )
                                 })}
                         </Box>
-                            
                     </Flex>
                     <Flex 
                         justifyContent={"center"}
@@ -202,12 +187,50 @@ function ListPlats(){
             {platsFavoris.map((plat)=>{
                 if(platsFavoris.indexOf(plat)<5)
                     return(
-                        <Container borderRadius={"5px"} w={"auto"} centerContent>
+                        <Container borderRadius={"5px"} w={"auto"} key={plat.name} centerContent>
                             <Image width={150} height={400} src={plat.src} />
                             <Text color={"gray.600"} fontWeight={"500"}>{plat.name}</Text>
                         </Container>
                     )
             })}
         </Flex>
+    )
+}
+
+function SearchBar(){
+    const sxTextTitle = {
+        display:"block",
+        as:"h2",
+        w:"auto",
+        fontWeight:"600",
+        _after : {
+                display :"block",
+                content : `" "`,
+                h : "1px",
+                w : "50%",
+                bg:"#A0A0A0"
+        }
+    }
+    return(
+        <>
+            <Flex justifyContent={"right"}>
+            <InputGroup  w={"500px"} >
+                <InputRightElement pointerEvents="">
+                    <SearchIcon color='gray.400' />
+                </InputRightElement>
+                <Input type='Text' placeholder='Rechercher une commande' border={"1px solid gray"} borderRadius={"10px"}/>
+            </InputGroup>
+        </Flex>
+        <Box mt={"10px"} >
+            <Text 
+                sx={sxTextTitle}
+            >
+                <Icon as = {FaHeartbeat} />
+                Les plats le plus commandé par les clients
+            </Text>
+            <ListPlats plats = {platsFavoris} />
+        </Box>
+        </>
+        
     )
 }

@@ -6,6 +6,7 @@ import Caisse from "./caisse";
 import { getGroupeRestaurant } from "@/Services";
 import { useQuery } from "react-query";
 import CheckPayement from "./checkout";
+import SignUp from "@/components/register/signUp";
 const Page = () => {
     const {data} = useQuery("groureRestaurant", () => getGroupeRestaurant('Urbania'))
 
@@ -14,8 +15,9 @@ const Page = () => {
             {/* <Header/> */}
             {/* <CheckPayement /> */}
             {/* <MainIndex datas={data}/> */}
-            <Caisse />
+            {/* <Caisse /> */}
             {/* <Footer/> */}
+            <SignUp />
         </Box>
     )
 }

@@ -12,9 +12,23 @@ import {
 import { DeleteIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { Icon } from "@chakra-ui/react";
 import {FaTrashAlt, FaCheckSquare, FaHeart} from "react-icons/fa"
+import { useState } from 'react';
 
+
+const list =[
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage"},
+    {id : 12256, table : 2, personnes : 5, commandes : "tacos, kebab Pizza 4 fromage"},
+]
 
 export default function Tableau(){
+    const [state , setState] = useState(list)
     const sxTh = {
         textTransform:'capitalize',
         fontSize:'14px',
@@ -25,9 +39,8 @@ export default function Tableau(){
         <TableContainer alignItems="center" borderRadius="5px" borderBottom="none" 
             justifyContent="center"  maxH={"52vh"} overflowY={"scroll"} 
         >
-          <Table variant='striped' 
-            size="lg"  
-           
+          <Table variant="striped"
+            size="lg"
           > 
             <Thead >
               <Tr > 
@@ -39,68 +52,31 @@ export default function Tableau(){
               </Tr>
             </Thead>
             <Tbody>
-            <Tr>
-                <Td textAlign={"center"}> 44532</Td>
-                <Td textAlign={"center"}>2</Td>
-                <Td textAlign={"center"}>3</Td>
-                <Td textAlign={"center"}>Tacos kebab, Pizza 4 Fromage</Td>
-                <Td>
-                    <SimpleGrid gap={"10px"} gridTemplateColumns={"1fr 1fr"}>
-                        <Button><CheckCircleIcon /></Button>
-                        <Button><DeleteIcon /></Button>
-                    </SimpleGrid >
-                </Td>
-            </Tr>
-            <Tr>
-                <Td textAlign={"center"}> 44532</Td>
-                <Td textAlign={"center"}>2</Td>
-                <Td textAlign={"center"}>3</Td>
-                <Td textAlign={"center"} whiteSpace={"pre-line"}>Tacos kebab, Pizza 4 Fromage Tacos kebab, Pizza 4 Fromage</Td>
-                <Td>
-                    <SimpleGrid gap={"10px"} gridTemplateColumns={"1fr 1fr"}>
-                        <Button><CheckCircleIcon /></Button>
-                        <Button><DeleteIcon /></Button>
-                    </SimpleGrid >
-                </Td>
-            </Tr>
-            <Tr>
-                <Td textAlign={"center"}> 44532</Td>
-                <Td textAlign={"center"}>2</Td>
-                <Td textAlign={"center"}>3</Td>
-                <Td textAlign={"center"}>Tacos kebab, Pizza 4 Fromage</Td>
-                <Td>
-                    <SimpleGrid gap={"10px"} gridTemplateColumns={"1fr 1fr"}>
-                        <Button><CheckCircleIcon /></Button>
-                        <Button><DeleteIcon /></Button>
-                    </SimpleGrid >
-                </Td>
-            </Tr>
-            <Tr>
-                <Td textAlign={"center"}> 44532</Td>
-                <Td textAlign={"center"}>2</Td>
-                <Td textAlign={"center"}>3</Td>
-                <Td textAlign={"center"}>Tacos kebab, Pizza 4 Fromage</Td>
-                <Td>
-                    <SimpleGrid gap={"10px"} gridTemplateColumns={"1fr 1fr"}>
-                        <Button><Icon as={FaTrashAlt} /></Button>
-                        <Button><Icon as={FaCheckSquare} /></Button>
-                    </SimpleGrid >
-                </Td>
-            </Tr>
-            <Tr>
-                <Td textAlign={"center"}> 44532</Td>
-                <Td textAlign={"center"}>2</Td>
-                <Td textAlign={"center"}>3</Td>
-                <Td textAlign={"center"}>Tacos kebab, Pizza 4 Fromage</Td>
-                <Td>
-                    <SimpleGrid gap={"10px"} gridTemplateColumns={"1fr 1fr"}>
-                        <Button><CheckCircleIcon /></Button>
-                        <Button><DeleteIcon /></Button>
-                    </SimpleGrid >
-                </Td>
-            </Tr>
+            {/* <Tr> */}
+                {ListCommande(state)}
+            {/* </Tr> */}
+            
             </Tbody>
           </Table>
       </TableContainer>
     )
+}
+
+function ListCommande(list){
+    return list.map((el)=>{
+        return(
+            <Tr key={el.id} >
+                <Td textAlign={"center"} whiteSpace={"pre-line"}>{el.id}</Td>
+                <Td textAlign={"center"} whiteSpace={"pre-line"}>{el.table}</Td>
+                <Td textAlign={"center"} whiteSpace={"pre-line"}>{el.personnes}</Td>
+                <Td textAlign={"center"} whiteSpace={"pre-line"}>{el.commandes}</Td>
+                <Td>
+                    <SimpleGrid gap={"10px"} gridTemplateColumns={"1fr 1fr"}>
+                        <Button><Icon as={FaCheckSquare} /></Button>
+                        <Button><Icon as={FaTrashAlt} /></Button>
+                    </SimpleGrid >
+                </Td>
+            </Tr>
+        )
+    })
 }
