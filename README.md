@@ -1,1 +1,1 @@
-# DigiWaitert is just a school project
+# DigiWaiter is just a school project

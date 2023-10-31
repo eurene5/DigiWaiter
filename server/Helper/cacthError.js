@@ -1,0 +1,1 @@
+export const catchError = asyncFonc => (req, res, next) => asyncFonc(req, res, next).catch()

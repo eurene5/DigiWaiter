@@ -9,7 +9,6 @@ import {
     SimpleGrid
 } from "@chakra-ui/react";
 
-import { EmailIcon } from "@chakra-ui/icons";
 export default function CheckPayement(){
     const montant = 80000
     const sxBouton = {
