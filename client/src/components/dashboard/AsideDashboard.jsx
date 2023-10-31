@@ -32,7 +32,7 @@ const data = {
   'name': "Kebn'Grill",
   'medias': "image1690133620998.jpg",
   'menu': {
-    'categories': ["wrap", "Boissons", "Burger", "Kebab"]
+    'categories': ["Wrap", "Boissons", "Burger", "Kebab"]
   }
 }
 const categories = data.menu.categories

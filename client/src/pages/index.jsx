@@ -11,8 +11,8 @@ const Page = () => {
     return(
         <Box bgColor='#FFFFFFF2'>
             <Header/>
-            <CheckPayement />
-            {/* <MainIndex datas={data}/> */}
+            {/* <CheckPayement /> */}
+            <MainIndex datas={data}/>
             <Footer/>
         </Box>
     )
