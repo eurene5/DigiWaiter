@@ -1,52 +1,72 @@
 import axios from "axios";
 
+//get tout les restaurant lié a un groupe (food court)
 export function getGroupeRestaurant(groupe) {
     return(new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/restaurants/groupe/${groupe}`)
+        axios.get(`http://localhost:8000/api/restaurants/${groupe}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
     }))
 }
 
-export function getOneRestaurant(slug) {
-    return(new Promise(async resolve => {
-        await axios.get(`http://localhost:8000/api/restaurants/${slug}`)
-        .then(res => res.status === 200 && res.data)
-        .then(resolve)
-        .catch(console.error)
-    }))
-}
-
-// export async function getOneRestaurant(slug) {
-//     const res = await fetch(`http://localhost:8000/api/restaurants/${slug}`)
-//     const data = await res.json()
-//     return data
-// }
-
+//get tout les menus d'un restaurant
 export function getMenuForOneRestaurant(restaurant) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/menus/${restaurant}`)
+        axios.get(`http://localhost:8000/api/menus/restaurant/${restaurant}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
     }))
 }
 
+//get la liste des catégories des menus d'un restaurant
 export function getCategorieMenu(restaurant) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/categories/${restaurant}`)
+        axios.get(`http://localhost:8000/api/menus/categories/${restaurant}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
     }))
 }
 
+//get single menu
 export function getSingleMenu(slug) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/restaurant/${slug}`)
+        axios.get(`http://localhost:8000/api/Menus/${slug}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
     }))
 }
+
+//add to cart
+export function addToCart(slug, restaurant) {
+    return (new promise(resolve => {
+        axios.get(`http://localhost:8000/api/cart/add/${slug}`)
+        .then(res => res.status === 200 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+//delete to cart
+export function deleteToCart(slug, restaurant) {
+    return (new promise(resolve => {
+        axios.get(`http://localhost:8000/api/cart/remove/${slug}?restaurant=${restaurant}`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+//get tout les éléments du panier
+export function getPoductCart(slug) {
+    return (new promise(resolve => {
+        axios.get(`http://localhost:8000/api/cart/`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+

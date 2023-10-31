@@ -1,4 +1,5 @@
 import express, { json } from "express"
+import {getRestaurant} from "../Controllers/restaurantController.js"
 import Cart from "../Controllers/cartController.js"
 
 const routesCart = new express.Router()
@@ -19,30 +20,26 @@ routesCart.get('/', async (req, res) => {
     res.send(data)
 })
 
-routesCart.get('/add/:id', async (req, res) => {
-    const productId = req.params.id
-    let restaurant = "reghalal"
+routesCart.get('/add/:slug', async (req, res) => {
+    const {slug} = req.params
     let sessionCart = req.session.cart ? req.session.cart : {}
     let cart = new Cart(sessionCart)
-    // const product = await Menu.find({slug : productId})
+    const product = await Menu.find({slug : slug})
+    const restaurant = product[restaurant]
 
-    const product = {
-        name : "laoka be",
-        price : 20000
-    }
 
     if(product){
-        cart.addToCart(productId, restaurant, product)
+        cart.addToCart(slug, restaurant.name, product)
         req.session.cart = cart
         res.send(req.session.cart)
     } else return res.send("menu not found")
     
 })
 
-routesCart.get('/remove/:id', function(req, res, next) {
-    let productId = req.params.id
+routesCart.get('/remove/:slug', function(req, res, next) {
+    const {slug} = req.params
     let cart = new Cart(req.session.cart ? req.session.cart : {})
-    let restaurant = {name : "reghalal", img : "banner.png"}
+    let {restaurant} = req.query
   
     cart.removeToCart(productId, restaurant);
     req.session.cart = cart;

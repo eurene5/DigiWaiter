@@ -3,7 +3,8 @@ import multer from "multer"
 import path from "path"
 import { catchError } from "../Helper/cacthError.js"
 import { getAllRestaurant,
-         getRestaurant,
+        //  getRestaurant,
+         getGroupeRestuarants,
          login,
          register,
          logout,
@@ -28,7 +29,8 @@ const upload = multer({
 const RestaurantRoutes = new express.Router()
 
 RestaurantRoutes.get('/', catchError(getAllRestaurant))
-RestaurantRoutes.get('/:slug', catchError(getRestaurant))
+// RestaurantRoutes.get('/single/:slug', catchError(getRestaurant))
+RestaurantRoutes.get('/:groupe', catchError(getGroupeRestuarants))
 RestaurantRoutes.post('/signup', catchError(register))
 RestaurantRoutes.delete('/delete/:slug', catchError(deleteRestaurant))
 RestaurantRoutes.put('/define-admin-password/:slug', catchError(defineAdminPassword))

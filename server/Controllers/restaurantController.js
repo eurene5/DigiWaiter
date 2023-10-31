@@ -24,6 +24,21 @@ export const getRestaurant = async (req, res) => {
     res.status(200).send(restaurant)
 }
 
+export const getGroupeRestuarants = async (req, res) => {
+    const { groupe } = req.params
+    const {table , restaurant} = req.query
+
+    if(restaurant && table){
+        const restaurants = await restaurantModel.find({'groupe.name' : groupe})
+                            .where('slug').equals(restaurant)
+                            .exec()
+        req.session.table = table
+    }
+    
+    const restaurants = await restaurantModel.find({'groupe.name' : groupe})
+    return res.status(200).json(restaurants)
+}
+
 export const login = async (req, res, next) => {
     passport.authenticate('login', async (err, restaurant) => {
        try {
