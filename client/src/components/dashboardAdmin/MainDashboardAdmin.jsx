@@ -1,8 +1,10 @@
-import { Box, Text, HStack, Icon, Flex, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from '@chakra-ui/react'
+import { Box, Text, HStack, VStack, Icon, Flex, TableContainer, Table, Thead, Tr, Th, Tbody, Td, ButtonGroup, Button } from '@chakra-ui/react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Colors } from 'chart.js';
 import { Pie } from "react-chartjs-2";
 import React, { useState } from 'react'
 import { ImStatsDots }  from 'react-icons/im'
+import SearchBar from '../dashboardCaisse/SearchBar';
+import { FaCoins, FaPlus, FaUsers } from 'react-icons/fa'
 
 
 const MainDashboardAdmin = () => {
@@ -95,9 +97,11 @@ const MainDashboardAdmin = () => {
 
   return (
     <Flex justifyContent='center'>
-        <HStack spacing='60px' flexWrap='wrap'>
+        <HStack spacing='40px' flexWrap='wrap' justifyContent='center' alignItems='top' >
             <Box>  
+                <SearchBar/>
                 <Text 
+                    mt='30px'
                     fontWeight='bold' 
                     color='#394D5F' 
                     borderBottom='1px' 
@@ -109,6 +113,17 @@ const MainDashboardAdmin = () => {
                         <Icon as={ImStatsDots} me='4px'/>
                         <Box as='span'>Statistique de vente</Box>
                 </Text>
+                <HStack spacing='0' w='100%' mt='20px'>
+                    <Button type='button' colorScheme='blackAlpha' roundedEnd='none' w='33%' roundedBottomStart='none'>
+                        Hebdomadaire
+                    </Button>
+                    <Button type='button' colorScheme='green' rounded='none' w='33%' borderStart='1px solid white' borderEnd='1px solid white'>
+                        Mensuel
+                    </Button>
+                    <Button type='button' colorScheme='green' roundedStart='none' w='33%' roundedBottomEnd='none'>
+                        Annuel
+                    </Button>
+                </HStack>
                 <TableContainer>
                     <Table variant='striped' fontWeight='semibold' color='black'>
                         <Thead>
@@ -140,9 +155,72 @@ const MainDashboardAdmin = () => {
                     </Table>
                 </TableContainer>
             </Box>
-            <Box>
-                <Pie data={data2}/>
-            </Box>
+            <VStack spacing='20px'>
+                <HStack 
+                    w="100%" justifyContent={"center"}
+                    p="10px 0"
+                    bgColor={"#394D5F"}
+                    borderRadius='3px'
+                    alignItems='center'
+                    color={"white"}
+                >
+                    <Icon as={FaPlus}/>
+                    <Text fontWeight='bold' >Ajouter un menu à la carte</Text> 
+                </HStack>                
+                <Box 
+                    w='100%' 
+                    bg='rgba(217, 217, 217, .37)' 
+                    pt='10px' 
+                    pb='50px' 
+                    boxShadow='0px 4px 4px 0px rgba(0, 0, 0, 0.25)'
+                    borderRadius='6px'
+                >
+                    <Pie data={data2}/>
+                    <Text 
+                        fontWeight='bold' 
+                        textAlign='center' 
+                        color='394D5F' 
+                        opacity='.97'
+                        mt='30px'
+                    >
+                        Nombre de client de  la semaine
+                    </Text>
+                </Box>
+                <HStack 
+                    bg='rgba(217, 217, 217, .37)' 
+                    spacing='25px'  
+                    boxShadow='0px 4px 4px 0px rgba(0, 0, 0, 0.25)'
+                    borderRadius='6px'
+                    justifyContent='center'
+                    py='17px'
+                    w='100%'
+                >
+                    <Icon as={FaUsers} w='40px' h='28px' color='#3FCB80' />
+                    <Box textAlign='center'>
+                        <Text fontWeight='semibold'>Nombre de Client</Text>
+                        <Text color='#394D5F' fontWeight='extrabold'>
+                            119 clients
+                        </Text>
+                    </Box>
+                </HStack>
+                <HStack 
+                    bg='rgba(217, 217, 217, .37)' 
+                    spacing='25px'  
+                    boxShadow='0px 4px 4px 0px rgba(0, 0, 0, 0.25)'
+                    borderRadius='6px'
+                    justifyContent='center'
+                    py='17px'
+                    w='100%'
+                >
+                    <Box textAlign='center'>
+                        <Text fontWeight='semibold'>Ventes d&apos;aujourdh&apos;hui</Text>
+                        <Text color='#394D5F' fontWeight='extrabold'>
+                            400 000 Ar
+                        </Text>
+                    </Box>
+                    <Icon as={FaCoins} w='40px' h='40px' color='#FF1B52' />
+                </HStack>
+            </VStack>
         </HStack>
     </Flex>
     

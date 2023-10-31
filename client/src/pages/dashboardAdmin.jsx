@@ -14,7 +14,9 @@ const dashboardAdmin = () => {
             </Box>           
             <Box w='full'>
                 <HeaderDashboard/>
-                <MainDashboardAdmin/>
+                <Box my='30px'>
+                    <MainDashboardAdmin/>
+                </Box>
             </Box>
         </Box>
     )
