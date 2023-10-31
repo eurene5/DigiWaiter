@@ -1,5 +1,6 @@
 import Menu from "../Models/menusModel.js"
 import { categorieModel } from "../Models/categorieModel.js"
+import { restaurantModel } from "../Models/restaurantsModel.js"
 
 export const getmenus = async (req, res) => {
     const {restaurant} = req.params
@@ -21,10 +22,14 @@ export const getCategorie = async (req, res) => {
 
 export const createmenu = async (req, res) => {
     var data = {...req.body}
-    data.slug = data.name.split(' ').join('-');
-    const newmenu = new Menu(data);
-    const insertedmenu = await newmenu.save();
-    return res.status(201).json(insertedmenu);
+    const {slug} = req.params
+    const restaurant = await restaurantModel.find({slug : slug})
+
+    data.slug = data.name.split(' ').join('-')
+    data.restaurant = restaurant
+    const newmenu = new Menu(data)
+    const insertedmenu = await newmenu.save()
+    return res.status(201).json(insertedmenu)
 }
 
 export const personnaliseMenu = async (req, res) => {

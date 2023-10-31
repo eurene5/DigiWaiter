@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios from "axios"
+
+//Restaurant et menu
 
 /**
  * //get tout les restaurant lié a un groupe (food court)
@@ -14,7 +16,6 @@ export function getGroupeRestaurant(groupe) {
     }))
 }
 
-
 /**
  * get tout les menus d'un restaurant
  * @param {String} restaurantslug slug du restaurant
@@ -28,7 +29,6 @@ export function getMenuForOneRestaurant(restaurant) {
         .catch(console.error)
     }))
 }
-
 
 /**
  * get la liste des catégories des menus d'un restaurant
@@ -58,6 +58,7 @@ export function getSingleMenu(slug) {
     }))
 }
 
+//Panier
 
 /**
  * Add to cart
@@ -72,7 +73,6 @@ export function addToCart(slug) {
         .catch(console.error)
     }))
 }
-
 
 /**
  * delete to cart
@@ -99,6 +99,7 @@ export function getPoductCart() {
     }))
 }
 
+//Facture
 
 /**
  * Creation de facture quand on appuie sur le boutton commandé
@@ -133,7 +134,37 @@ export function getFacture() {
  */
 export function createPaimentIntent() {
     return (new promise(resolve => {
-        axios.post(`http://localhost:8000/api/factures/paiement`)
+        axios.get(`http://localhost:8000/api/factures/paiement`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+//Avis
+
+/**
+ * get all feedback pour un restaurant (avis)
+ * @param {String} slug slug du restaurant 
+ * @returns 
+ */
+export function getFeedback (slug) {
+    return (new promise(resolve => {
+        axios.get(`http://localhost:8000/api/feedback/${slug}`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+/**
+ * creation d'un avis sur un restaurant
+ * @param {String} slug slug du restaurant
+ * @returns 
+ */
+export function createFeedback (slug) {
+    return (new promise(resolve => {
+        axios.post(`http://localhost:8000/api/feedback/create/${slug}`)
         .then(res => res.status === 2000 && res.data)
         .then(resolve)
         .catch(console.error)

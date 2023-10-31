@@ -3,8 +3,8 @@ import { groupeShema } from "./groupeModel.js"
 import mongoose from "mongoose"
 
 const adminShema = new mongoose.Schema({
-    username : {type : String},
-    password : {type : String}
+    username : {type : String, default : "admin"},
+    password : {type : String, default : "admin"}
 })
 
 export const restaurantShema = new mongoose.Schema({
@@ -16,7 +16,7 @@ export const restaurantShema = new mongoose.Schema({
     password : {type : String, requiered : true},
     note : {type : Number, requiered : true, default : 0},
     medias : {type : String, requiered : true},
-    admin : {type : adminShema, default : () => ({})},
+    admin : [{type : adminShema, default : () => ({})}],
     groupe : {type : groupeShema, requiered : true, default : {name : "independant"}}
 })
 

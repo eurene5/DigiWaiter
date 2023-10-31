@@ -41,23 +41,23 @@ export const getGroupeRestuarants = async (req, res) => {
 
 export const login = async (req, res, next) => {
     passport.authenticate('login', async (err, restaurant) => {
-       try {
-        if(err || !restaurant)
-            return next(new Error('une erreur est survenue lors de la connexion'))
+        try {
+            if(err || !restaurant)
+                return next(new Error('une erreur est survenue lors de la connexion'))
             req.login(restaurant, {session : false}, async (err) => {
                 if(err) return next(err)
                 restaurant = {_id : restaurant._id, name : restaurant.name, mail : restaurant.mail}
                 const token = jwt.sign(restaurant, process.env.JWTMDP)
                 res.json({ token })
             })
-       } catch (error) {
+        } catch (error) {
             return next(error)
-       }   
+        }   
     })(req, res, next)
 }
 
 export const register = async (req, res) => {
-    var data = {...req.body}
+    var data = {...data}
     if (!req.file) {
         res.send("No file upload")
     } else {
@@ -65,6 +65,7 @@ export const register = async (req, res) => {
         data.medias = imgsrc
         data.password = bcrypt.hashSync(data.password, 14)
         data.slug = data.name.split(' ').join('-')
+        data.admin = [{}]
         const newRestaurant = new restaurantModel(data)
         await newRestaurant.save()
         res.status(200).send(newRestaurant)
@@ -77,7 +78,7 @@ export const logout = async (req, res) => {
 }
 
 export const forgotPassword = async (req, res) => {
-    const restaurant = await restaurantModel.findOne({mail : req.body.mail})
+    const restaurant = await restaurantModel.findOne({mail : data.mail})
     if(restaurant){
         const token = randToken.generate(16)
 
@@ -113,8 +114,9 @@ export const forgotPassword = async (req, res) => {
 }
 
 export const defineAdminPassword = async (req, res) => {
-    const username = req.body.username
-    const password = bcrypt.hashSync(req.body.password, 14)
+    const data = {... req.body}
+    const username = data.username
+    const password = bcrypt.hashSync(data.password, 14)
     const { slug } = req.params
     const updateRestaurant = await restaurantModel.findOneAndUpdate(
         {slug: slug},
@@ -133,8 +135,8 @@ export  const resetPassword = async (req, res) => {
     resetToken.then( async tokenReset => {
         if(tokenReset){
             //redefinition du mot de passe
-            if(req.body.password == req.body.password_){
-                const password = bcrypt.hashSync(req.body.password, 16)
+            if(data.password == data.password_){
+                const password = bcrypt.hashSync(data.password, 16)
                 await restaurantModel.findOneAndUpdate({mail : resetToken.mail}, {password : password})
                 await deletePasswordResetToken(tokenReset.token)
                 res.send("password update successfuly")

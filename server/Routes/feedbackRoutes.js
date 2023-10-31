@@ -9,10 +9,9 @@ import { catchError } from "../Helper/cacthError.js";
 
 const feedbackRoutes = new express.Router()
 
-feedbackRoutes.get('/', catchError(getAllFeedback))
-feedbackRoutes.post('/create', catchError(createFeedback))
+feedbackRoutes.get('/:slug', catchError(getAllFeedback))
+feedbackRoutes.post('/create/:slug', catchError(createFeedback))
 feedbackRoutes.put('/update/:slug', catchError(updateFeedback))
-feedbackRoutes.get('/paiement/:slug', catchError(updateFeedback))
 feedbackRoutes.delete('/delete/:slug', catchError(deleteFeedback))
 
 export default feedbackRoutes

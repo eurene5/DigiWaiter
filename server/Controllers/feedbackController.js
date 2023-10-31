@@ -1,14 +1,15 @@
 import feedback from "../Models/feedbackModel.js"
 import { restaurantModel } from "../Models/restaurantsModel.js"
 
-export const getAllFeedback = async (_, res) => {
-    const groupes = await feedback.find()
-    res.status(200).send(groupes)
+export const getAllFeedback = async (req, res) => {
+    const {slug} = req.params
+    const feed = await feedback.find({'restaurant.slug' : slug})
+    res.status(200).send(feed)
 }
 
 export const createFeedback = async (req, res) => {
     let data = {...req.body}
-    const { restaurantSlug } = data
+    const { restaurantSlug } = req.params
     //recherche du retsaurant en question
     const retsaurant = await restaurantModel.findOne({slug : restaurantSlug})
     data.restaurant = retsaurant
