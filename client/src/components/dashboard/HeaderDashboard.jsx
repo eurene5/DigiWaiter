@@ -9,7 +9,7 @@ import { BiLock, BiLogOut, BiUserCircle } from 'react-icons/bi'
 const HeaderDashboard = () => {
   
   return (
-    <Box w='full'>
+    <Box w='full' position='sticky' top='0' zIndex='100'>
         <Flex 
             minH='40px'     
             bgColor='#3FCB80'
