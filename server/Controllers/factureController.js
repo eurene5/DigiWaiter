@@ -4,26 +4,26 @@ import Cart from "./cartController.js"
 import Facture from "../Models/factureModel.js"
 import facture from "../Models/factureModel.js"
 
-export const getfactures = async (_, res) => {
-    const allfactures = await Facture.find()
-    return res.status(200).send(allfactures)
+export const getfactures = async (req, res) => {
+    const {slug} = req.params
+    const allfactures = await Facture.find({'restaurant.slug' : slug})
+    return res.status(200).json(allfactures)
 }
 
 export const getfacture = async (req, res) => {
-    const { slug } = req.params
+    const { slug } = req.session.facture
     const facture = await Facture.find({slug: slug})
-    return res.status(200).send(facture)
+    return res.status(200).json(facture)
 }
 
 //création de facture
 export const createfacture = async (req, res) => {
-    const body = req.body
+    const {restaurantName} = req.query
     let sessionCart = req.session.cart
     
     if(sessionCart){
         const cart = new Cart(sessionCart)
         const {items} = sessionCart
-        const restaurantName = req.body.restaurantName
 
         if(restaurantName == "All") {
 
@@ -34,9 +34,10 @@ export const createfacture = async (req, res) => {
                 slug : slug
             }
 
-            new Facture(data).save()
+            const facture = new Facture(data).save()
+            req.session.facture = facture.slug
             Reflect.deleteProperty(req.session, "cart")
-            return res.send("tout les commandes ont été facturer")
+            return res.status(200).json("tout les commandes ont été facturer")
 
         } else {
 
@@ -52,16 +53,17 @@ export const createfacture = async (req, res) => {
                         slug : randToken.generate(14)
                     }
                     
-                    new facture(data).save()
+                    const facture = new facture(data).save()
+                    req.session.facture = facture.slug
                     //enlever les items factué du panier
                     Reflect.deleteProperty(sessionCart.items, restaurantName)
                 }
             }
 
-            return res.send(`commande ${restaurantName} bien facturer`)
+            return res.status(200).json(`commande ${restaurantName} bien facturer`)
         }
         
-    } else return res.send("cart not initialise")
+    } else return res.status(200).json("cart not initialise")
 
 }
 
@@ -81,7 +83,7 @@ export const deletefacture = async (req, res) => {
 export const processPayement = async (req, res) => {
     //déclaration des variables
     const stripe = new Stripe(process.env.CLE_SECRETE_STRYPE)
-    const { slug } = req.params
+    const { slug } = req.session.facture
     const facture = await Facture.find({ slug })
     if(facture){
         const products = facture.shift().content

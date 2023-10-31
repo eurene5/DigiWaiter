@@ -3,7 +3,7 @@ import { categorieModel } from "../Models/categorieModel.js"
 
 export const getmenus = async (req, res) => {
     const {restaurant} = req.params
-    const allmenus = await Menu.find({'restaurant.name' : restaurant})
+    const allmenus = await Menu.find({'restaurant.slug' : restaurant})
     return res.status(200).json(allmenus)
 }
 
@@ -15,7 +15,7 @@ export const getmenu = async (req, res) => {
 
 export const getCategorie = async (req, res) => {
     const {restaurant} = req.params
-    const categories = await categorieModel.find({"restaurant.name" : restaurant})
+    const categories = await categorieModel.find({"restaurant.slug" : restaurant})
     return res.status(200).json(categories)
 }
 

@@ -1,6 +1,10 @@
 import axios from "axios";
 
-//get tout les restaurant lié a un groupe (food court)
+/**
+ * //get tout les restaurant lié a un groupe (food court)
+ * @param {String} groupe 
+ * @returns 
+ */
 export function getGroupeRestaurant(groupe) {
     return(new Promise(resolve => {
         axios.get(`http://localhost:8000/api/restaurants/${groupe}`)
@@ -10,7 +14,12 @@ export function getGroupeRestaurant(groupe) {
     }))
 }
 
-//get tout les menus d'un restaurant
+
+/**
+ * get tout les menus d'un restaurant
+ * @param {String} restaurantslug slug du restaurant
+ * @returns 
+ */
 export function getMenuForOneRestaurant(restaurant) {
     return (new Promise(resolve => {
         axios.get(`http://localhost:8000/api/menus/restaurant/${restaurant}`)
@@ -20,7 +29,12 @@ export function getMenuForOneRestaurant(restaurant) {
     }))
 }
 
-//get la liste des catégories des menus d'un restaurant
+
+/**
+ * get la liste des catégories des menus d'un restaurant
+ * @param {String} restaurant slug du restaurant
+ * @returns 
+ */
 export function getCategorieMenu(restaurant) {
     return (new Promise(resolve => {
         axios.get(`http://localhost:8000/api/menus/categories/${restaurant}`)
@@ -30,7 +44,11 @@ export function getCategorieMenu(restaurant) {
     }))
 }
 
-//get single menu
+/**
+ * get single menu
+ * @param {String} slug slug du produit
+ * @returns 
+ */
 export function getSingleMenu(slug) {
     return (new Promise(resolve => {
         axios.get(`http://localhost:8000/api/Menus/${slug}`)
@@ -40,8 +58,13 @@ export function getSingleMenu(slug) {
     }))
 }
 
-//add to cart
-export function addToCart(slug, restaurant) {
+
+/**
+ * Add to cart
+ * @param {String} slug slug du produit a ajouter au panier
+ * @returns 
+ */
+export function addToCart(slug) {
     return (new promise(resolve => {
         axios.get(`http://localhost:8000/api/cart/add/${slug}`)
         .then(res => res.status === 200 && res.data)
@@ -50,8 +73,14 @@ export function addToCart(slug, restaurant) {
     }))
 }
 
-//delete to cart
-export function deleteToCart(slug, restaurant) {
+
+/**
+ * delete to cart
+ * @param {String} slug slug du produit a retirer du panier
+ * @param {String} restaurant le nom du restaurant où le produit a été commander
+ * @returns 
+ */
+export function removeToCart(slug, restaurant) {
     return (new promise(resolve => {
         axios.get(`http://localhost:8000/api/cart/remove/${slug}?restaurant=${restaurant}`)
         .then(res => res.status === 2000 && res.data)
@@ -61,7 +90,7 @@ export function deleteToCart(slug, restaurant) {
 }
 
 //get tout les éléments du panier
-export function getPoductCart(slug) {
+export function getPoductCart() {
     return (new promise(resolve => {
         axios.get(`http://localhost:8000/api/cart/`)
         .then(res => res.status === 2000 && res.data)
@@ -70,3 +99,43 @@ export function getPoductCart(slug) {
     }))
 }
 
+
+/**
+ * Creation de facture quand on appuie sur le boutton commandé
+ * @param {String} restaurantName "All" si l'utilisateur appue sur tout commander si non ce sera le nom du restaurant
+ * @returns 
+ */
+export function createFacture(restaurantName) {
+    return (new promise(resolve => {
+        axios.post(`http://localhost:8000/api/factures/create?restaurantName=${restaurantName}`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+/**
+ * get la facture du client
+ * @returns 
+ */
+export function getFacture() {
+    return (new promise(resolve => {
+        axios.get(`http://localhost:8000/api/factures/`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+/**
+ * creation de l'intention de payement quand le client clique sur le boutton "payer la facture"
+ * @returns 
+ */
+export function createPaimentIntent() {
+    return (new promise(resolve => {
+        axios.post(`http://localhost:8000/api/factures/paiement`)
+        .then(res => res.status === 2000 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}

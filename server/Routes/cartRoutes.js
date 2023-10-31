@@ -25,7 +25,7 @@ routesCart.get('/add/:slug', async (req, res) => {
     let sessionCart = req.session.cart ? req.session.cart : {}
     let cart = new Cart(sessionCart)
     const product = await Menu.find({slug : slug})
-    const restaurant = product[restaurant]
+    const restaurant = product.restaurant
 
 
     if(product){
