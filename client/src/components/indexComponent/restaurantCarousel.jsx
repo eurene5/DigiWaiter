@@ -28,7 +28,7 @@ export const RestaurantCarousel = () => {
   };
 
   return (
-    <Box mt="10px">
+    <Box w={"98%"} mt="10px">
       <Slider {...settings}>
         <RestaurantCard name="Extra Pizza" src="/./assets/indexImages/extraPizza.png" href="/" note={"4.1 - Bien"}/>
         <RestaurantCard name="Okeanos" src="/./assets/indexImages/okeanos.png" href="/" note={"4.1 - Bien"}/>
