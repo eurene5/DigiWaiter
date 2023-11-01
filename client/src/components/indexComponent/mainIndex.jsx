@@ -2,6 +2,7 @@ import React from 'react'
 import {Box, Heading, Text} from '@chakra-ui/react'
 import {RestaurantList } from './RestaurantList'
 import {RestaurantCarousel} from './restaurantCarousel'
+import { OfferCarousel } from './OfferCarousel'
 import { SearchBar } from './searchBar'
 import { useRouter } from 'next/router'
 
@@ -13,14 +14,14 @@ export const MainIndex = ({datas}) => {
     <Box mt="20px" px='20px'>
         <Box mb='20px' >
           <Text fontSize='16px' fontWeight='semibold' color='rgba(0, 0, 0, 0.8)'>
-            Bonjour;<br/>
-            Quel genre d&apos;<Box as='span' color="#3FCB80" fontWeight='bold'>aventure culinaire</Box> aller vous <Box as='span' color="#3FCB80" fontWeight='bold'>expérimenter</Box> aujourd&apos;hui
+            Bonjour<br/>
+            Quel genre d&apos;<Box as='span' color="#3FCB80" fontWeight='bold'>aventure culinaire</Box> allez-vous <Box as='span' color="#3FCB80" fontWeight='bold'>expérimenter</Box> aujourd&apos;hui
           </Text>
         </Box>
         <SearchBar />
         <Box>
           <Text color='#394D5F' textTransform='uppercase' fontWeight='semibold'>Offres</Text>
-          {/* <RestaurantCarousel /> */}
+          <OfferCarousel/>
         </Box>
         <Box display='flex' flexWrap='wrap' justifyContent='center'>
           {datas?.map(data => {
@@ -42,7 +43,7 @@ export const MainIndex = ({datas}) => {
         >
           Mieux notés
         </Heading>
-        {/* <RestaurantCarousel/> */}
+        <RestaurantCarousel/>
     </Box>
   )
 }
