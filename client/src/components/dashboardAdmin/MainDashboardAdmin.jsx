@@ -128,9 +128,9 @@ const MainDashboardAdmin = () => {
                     <Table variant='striped' fontWeight='semibold' color='black'>
                         <Thead>
                             <Tr>
-                                <Th>Jour de la semaine</Th>
-                                <Th>Nombre de client</Th>
-                                <Th>Revenue du jour</Th>
+                                <Th textAlign='center' >Jour de la semaine</Th>
+                                <Th textAlign='center' >Nombre de client</Th>
+                                <Th textAlign='center' >Revenue du jour</Th>
                             </Tr>
                         </Thead>
                         <Tbody>

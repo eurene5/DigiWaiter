@@ -1,19 +1,31 @@
-import { Footer } from "@/components/indexComponent/Indexfooter";
-import { Header } from "@/components/indexComponent/Indexheader";
-import { MainIndex } from "@/components/indexComponent/mainIndex";
-import {Box} from '@chakra-ui/react';
-import { getGroupeRestaurant } from "@/Services";
-import { useQuery } from "react-query";
-import CheckPayement from "./checkout";
-const Page = () => {
-    const {data} = useQuery("groureRestaurant", () => getGroupeRestaurant('Urbania'))
+import QrReader from 'react-qr-scanner';
+import { useRef } from "react";
+import { useRouter } from "next/router";
 
-    return(
-        <Box bgColor='#FFFFFFF2'>
-            <Header/>
-            <MainIndex datas={data}/>
-            <Footer/>
-        </Box>
+
+const Page = () => {
+    const router = useRouter()
+    const videoRef = useRef(null);
+
+    const handleScan= (data) => {
+        if(data) {
+            console.log('voila', data)
+            router.push('accueil')
+        }
+    }
+    const handleError = (error) => {
+        console.error('error', error)
+    }
+
+    return (
+        <>
+            <QrReader
+                onScan={handleScan}
+                ref={videoRef}
+                onError={handleError}
+            />
+        </>
+
     )
 }
 
