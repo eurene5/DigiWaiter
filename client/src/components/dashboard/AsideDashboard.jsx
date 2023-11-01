@@ -32,14 +32,14 @@ const data = {
   'name': "Kebn'Grill",
   'medias': "image1690133620998.jpg",
   'menu': {
-    'categories': ["wrap", "Boissons", "Burger", "Kebab"]
+    'categories': ["Wrap", "Boissons", "Burger", "Kebab"]
   }
 }
 const categories = data.menu.categories
 
 const AsideDashboard = () => {
   return (
-    <VStack minW='275px' bgColor='#394D5F' opacity='.97' spacing='60px' color='white' h='100vh'>
+    <VStack minW='275px' bgColor='#394D5F' opacity='.97' spacing='60px' color='white' h='100vh' position='sticky' top='0'>
         <Box className='logoName'>
             <Image src={`/./upload/${data.medias}`} alt='' width='150' height='150' rounded='full' my='25px' mx='auto' />
             <Text fontWeight='bold' textAlign='center'>{data.name}</Text>
@@ -55,7 +55,7 @@ const AsideDashboard = () => {
         </Box>
         <Flex>
           <VStack align='flex-start' spacing='16px'>
-            <ActiveLink href='/' icon={FaCashRegister} >Caisse</ActiveLink>
+            <ActiveLink href='/caisse' icon={FaCashRegister} >Caisse</ActiveLink>
             <ActiveLink href='/' icon={PiCookingPotFill} >Cuisine</ActiveLink>
             <ActiveLink href='/' icon={MdRestaurantMenu} >Menus</ActiveLink>
             <ActiveLink href='/dashboardAdmin' icon={AiFillDashboard} >Tableau de bord</ActiveLink>
