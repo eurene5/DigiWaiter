@@ -1,18 +1,28 @@
-import { Footer } from "@/components/indexComponent/Indexfooter";
-import { Header } from "@/components/indexComponent/Indexheader";
-import { MainIndex } from "@/components/indexComponent/mainIndex";
-import {Box} from '@chakra-ui/react';
-import { getGroupeRestaurant } from "@/Services";
 import { useQuery } from "react-query";
-const Page = () => {
-    const {data} = useQuery("groureRestaurant", () => getGroupeRestaurant('Urbania'))
+import QrReader from 'react-qr-scanner';
+import { useRef } from "react";
 
-    return(
-        <Box bgColor='#FFFFFFF2'>
-            <Header/>
-            <MainIndex datas={data}/>
-            <Footer/>
-        </Box>
+const Page = () => {
+    const videoRef = useRef(null);
+
+    const handleScan= (data) => {
+        if(data)
+        console.log('voila', data)
+    }
+
+    const handleError = (error) => {
+        console.error(error);
+    }
+
+    return (
+        <>
+            <QrReader
+                onScan={handleScan}
+                onError={handleError}
+                ref={videoRef}
+            />
+        </>
+
     )
 }
 
