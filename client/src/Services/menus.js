@@ -71,7 +71,20 @@ export function deleteMenu(slug) {
 }
 
 //pour créer un menu
-//http://localhost:8000/api/menus/create/${slug}
+/**
+ * delete un menu
+ * @param {String} slug 
+ * @returns 
+ */
+export function CreateMenu(slug, data) {
+    return (new Promise(resolve => {
+        axios.post(`http://localhost:8000/api/menus/create/${slug}`, data)
+        .then(res => res.status === 200 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
 
 //rendre personnalisé un menu normal
 //http://localhost:8000/api/menus/create-personnalise/${slug}
