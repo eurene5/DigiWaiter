@@ -1,3 +1,4 @@
+import axios from "axios"
 /**
  * //get tout les restaurants liés a un groupe (food court)
  * @param {String} groupe le nom du groupe
@@ -48,8 +49,10 @@ export function definAdminPassword(slug) {
 
 //register
 export function register(data) {
+    // console.log(data);
     return(new Promise(resolve => {
-        axios.post(`http://localhost:8000/api/restaurants/sign-up`, data)
+        axios
+        .post(`http://localhost:8000/api/restaurants/sign-up`, data, {})
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)

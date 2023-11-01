@@ -11,6 +11,7 @@ const MainDashboardAjoutMenu = () => {
     const { getRootProps, getInputProps } = useDropzone()
 
   return (
+    
     <HStack justifyContent='space-around'>
         <VStack color='#292D32' spacing='18px'>
             <Heading as='h6' color='#292D32'>Créer un nouveau menu</Heading>

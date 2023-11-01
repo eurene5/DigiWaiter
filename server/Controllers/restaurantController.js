@@ -9,6 +9,7 @@ import { restaurantModel } from "../Models/restaurantsModel.js"
 import {createPasswordResetToken,
         getPasswordResetToken,
         deletePasswordResetToken} from "../Controllers/resetController.js"
+import { groupeModel } from "../Models/groupeModel.js"
 
 //initialisation du fichier des variables d'environnement
 dotenv.config()
@@ -61,10 +62,13 @@ export const register = async (req, res) => {
     if (!req.file) {
         res.send("No file upload")
     } else {
+        console.log(req.file);
         var imgsrc = req.file.filename
+        const groupe = await groupeModel.findOne({name : data.groupe})
+        data.groupe = groupe
         data.medias = imgsrc
         data.password = bcrypt.hashSync(data.password, 14)
-        data.slug = data.name.split(' ').join('-')
+        data.slug = data.name.split(' ').join('-') + randToken.generate(7)
         data.admin = [{}]
         const newRestaurant = new restaurantModel(data)
         await newRestaurant.save()

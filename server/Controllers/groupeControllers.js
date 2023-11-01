@@ -13,9 +13,10 @@ export const getGroupe = async (req, res) => {
 
 export const createGroupe = async (req, res) => {
     const data = {...req.body}
-    const newGroupe = await new groupeModel(data)
-    newGroupe.save()
-    res.status(200).send(newGroupe)
+    console.log(data);
+    const newGroupe = new groupeModel(data)
+    await newGroupe.save()
+    res.status(200).json(newGroupe)
 }
 
 export const updateGroupe = async (req, res) => {

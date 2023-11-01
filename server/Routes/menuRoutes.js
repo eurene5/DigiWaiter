@@ -9,13 +9,27 @@ import {
     deletemenu,
     searchMenu } from "../Controllers/menuController.js"
 
+    const storage = multer.diskStorage({
+        destination: (req, file, callBack) => {
+            callBack(null, '../client/public/upload')
+        },
+        filename: (req, file, callBack) => {
+            callBack(null, file.fieldname + Date.now() + path.extname(file.originalname))
+        }
+    })
+    
+    const upload = multer({
+        storage: storage
+    })
+    
+
 const routesmenu = new express.Router()
 
 routesmenu.get('/restaurant/:restaurant', getmenus)
 routesmenu.get('/:slug', getmenu)
 routesmenu.get('/', searchMenu)
 routesmenu.get('/categories/:restaurant', getCategorie)
-routesmenu.post('/create/:slug', createmenu)
+routesmenu.post('/create/:slug', upload.single("image"), createmenu)
 routesmenu.post('/create-personnalise/:slug', personnaliseMenu)
 routesmenu.put('/update/:slug', updatemenu)
 routesmenu.delete('/delete/:slug', deletemenu)

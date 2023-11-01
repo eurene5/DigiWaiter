@@ -15,7 +15,7 @@ import { getAllRestaurant,
 
 const storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, '../public/upload')
+        callBack(null, '../client/public/upload')
     },
     filename: (req, file, callBack) => {
         callBack(null, file.fieldname + Date.now() + path.extname(file.originalname))
@@ -31,7 +31,7 @@ const RestaurantRoutes = new express.Router()
 RestaurantRoutes.get('/', catchError(getAllRestaurant))
 RestaurantRoutes.get('/single/:slug', catchError(getRestaurant))
 RestaurantRoutes.get('/:groupe', catchError(getGroupeRestuarants))
-RestaurantRoutes.post('/sign-up', catchError(register))
+RestaurantRoutes.post('/sign-up', upload.single("image"), catchError(register))
 RestaurantRoutes.delete('/delete/:slug', catchError(deleteRestaurant))
 RestaurantRoutes.put('/define-admin-password/:slug', catchError(defineAdminPassword))
 RestaurantRoutes.post('/login', catchError(login))
