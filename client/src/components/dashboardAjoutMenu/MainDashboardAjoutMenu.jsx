@@ -10,21 +10,29 @@ const tests = ['Wrap', 'Tacos', 'Pizza', 'Burger', 'Kebab', 'Boisson' ]
 const catOptions = ['Viande', 'Sauce', 'Choix supplémentaires']
 
 const MainDashboardAjoutMenu = () => {
-    const { getRootProps, getInputProps } = useDropzone()
-    const { isLoading: isUpdating, mutate, data: post } = useMutation( async (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.target)
-        const post = {
-            ...Object.fromEntries(formData),
+    
+    const { getRootProps, getInputProps } = useDropzone();
+  
+    const { isLoading: isUpdating, mutate } = useMutation(async (formData) => {
+        try {
+        // Vous pouvez envoyer formData directement au lieu de le transformer en objet
+        await CreateMenu('blabla', formData);
+        } catch (error) {
+        console.error('Erreur lors de la création du menu :', error);
+        // Gérer l'erreur comme nécessaire
         }
-        console.log(formData)
-        await CreateMenu('blabla', post)
-    })
+    });
 
+    const handleFileChange = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        const formData = new FormData();
+        formData.append('file', file);
 
+        // Appel à la fonction de mutation avec FormData
+        mutate(formData);
+    };
 
   return (
-    
     <HStack justifyContent='space-around'>
        <form method="post" onSubmit={mutate}>
         <VStack color='#292D32' spacing='18px'>
@@ -152,22 +160,23 @@ const MainDashboardAjoutMenu = () => {
                     Créer le menu
                 </Button>
             </VStack>
+            <VStack spacing='100px' pt='150px'>
+                <Container>
+                    <VStack {...getRootProps({className: 'dropzone'})}
+                        bgColor='rgba(217, 217, 217, .37)'
+                        borderRadius='35px'
+                        py='60px'
+                        px='20px'
+                    >
+                        <Input {...getInputProps()} onChange={(e) => handleFileChange(e.target.files)} />
+                        <Icon as={BiCamera} w='70px' h='65px' color="#292D32" />
+                        <Text fontWeight='bold' color='#292D32'>Ajouter une photo pour illustrer votre menu</Text>
+                    </VStack>
+                </Container>
+                <Image src='/./assets/Chief.png' />
+            </VStack>
        </form>
-        <VStack spacing='100px' pt='150px'>
-            <Container>
-                <VStack {...getRootProps({className: 'dropzone'})}
-                    bgColor='rgba(217, 217, 217, .37)'
-                    borderRadius='35px'
-                    py='60px'
-                    px='20px'
-                >
-                    <Input {...getInputProps()} />
-                    <Icon as={BiCamera} w='70px' h='65px' color="#292D32" />
-                    <Text fontWeight='bold' color='#292D32'>Ajouter une photo pour illustrer votre menu</Text>
-                </VStack>
-            </Container>
-            <Image src='/./assets/Chief.png' />
-        </VStack>
+        
     </HStack>
   )
 }
