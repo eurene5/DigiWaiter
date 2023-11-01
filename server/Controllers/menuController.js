@@ -1,6 +1,7 @@
 import Menu from "../Models/menusModel.js"
 import { categorieModel } from "../Models/categorieModel.js"
 import { restaurantModel } from "../Models/restaurantsModel.js"
+import menuModel from "../Models/menusModel.js"
 
 export const getmenus = async (req, res) => {
     const {restaurant} = req.params
@@ -62,4 +63,10 @@ export const deletemenu = async (req, res) => {
     const { slug } = req.params
     await Menu.deleteOne({slug: slug})
     return res.status(200).json('menu suprimer')
+}
+
+export const searchMenu = async (req, res) => {
+    const {search} = req.query
+    const menus = await menuModel.find({"name" : {$regex : search, $options : "i"}})
+    return res.status(200).json(menus)
 }

@@ -4,7 +4,7 @@ import { restaurantModel } from "../Models/restaurantsModel.js"
 export const getAllFeedback = async (req, res) => {
     const {slug} = req.params
     const feed = await feedback.find({'restaurant.slug' : slug})
-    res.status(200).send(feed)
+    res.status(200).json(feed)
 }
 
 export const createFeedback = async (req, res) => {
@@ -17,7 +17,7 @@ export const createFeedback = async (req, res) => {
     //insertion dans feedback
     const newFeedback = await new feedback(data)
     newFeedback.save()
-    res.status(200).send(newFeedback)
+    res.status(200).json(newFeedback)
 }
 
 export const updateFeedback = async (req, res) => {
@@ -30,4 +30,18 @@ export const deleteFeedback = async (req, res) => {
     const { slug } = req.params
     await feedback.deleteOne({slug: slug})
     return res.status(200).json('Feedback suprimer')
+}
+
+export const ratingSysteme = async (req, res) => {
+    const {slug} = req.params
+    const feedbacks = await feedbacks.find({'restaurant.slug' : slug})
+    if(feedbacks){
+        let rate = 0
+        for(let feed in feedbacks){
+            rate += feed.stars
+        }
+        rate = rate/feedbacks.length
+        await restaurantModel.findOneAndUpdate({slug : slug}, {note : rate})
+        return res.status(200).json("note definis")
+    } else return res.status(400).json("pas de feedback enregistré")
 }
