@@ -9,6 +9,16 @@ const catOptions = ['Viande', 'Sauce', 'Choix supplémentaires']
 
 const MainDashboardAjoutMenu = () => {
     const { getRootProps, getInputProps } = useDropzone()
+    const { data: post} = useMutation( async (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const data = {
+            ...Object.fromEntries(formData),
+            status: formData.get()
+        }
+        await updatePost(postId, data)
+    })
+    
 
   return (
     <HStack justifyContent='space-around'>
@@ -16,15 +26,16 @@ const MainDashboardAjoutMenu = () => {
             <Heading as='h6' color='#292D32'>Créer un nouveau menu</Heading>
             <FormControl>
                 <FormLabel fontWeight='bold'>Nom du menu</FormLabel>
-                <Input type='text' bgColor='rgba(217, 217, 217, 0.79)' border='1px solid rgba(217, 217, 217, 0.37)'/>
+                <Input type='text' name='nomMenu' bgColor='rgba(217, 217, 217, 0.79)' border='1px solid rgba(217, 217, 217, 0.37)'/>
             </FormControl>
             <FormControl>
                 <FormLabel fontWeight='bold'>Les ingrédients composant le menu</FormLabel>
-                <Input type='text' bgColor='rgba(217, 217, 217, 0.79)' border='1px solid rgba(217, 217, 217, 0.37)'/>
+                <Input type='text' name='ingredient' bgColor='rgba(217, 217, 217, 0.79)' border='1px solid rgba(217, 217, 217, 0.37)'/>
             </FormControl>
             <FormControl>
                 <FormLabel  fontWeight='bold'>La catégorie du menu</FormLabel>
                 <Select
+                    name='categorieMenu'
                     fontWeight='semibold'
                     textAlign='center'
                     placeholder='Choisissez la catégorie de votre menu'
@@ -43,7 +54,7 @@ const MainDashboardAjoutMenu = () => {
             </FormControl>
             <FormControl>
                 <FormLabel fontWeight='bold'>Prix du menu</FormLabel>
-                <NumberInput min={10000} step={50} >
+                <NumberInput min={10000} step={50} name='prixMenu' >
                     <NumberInputField
                         fontWeight='semibold'
                         textAlign='center'
@@ -62,6 +73,7 @@ const MainDashboardAjoutMenu = () => {
                 <FormControl>
                     <FormLabel  fontWeight='bold'>La catégorie de l&apos;option</FormLabel>
                     <Select
+                        name='categorieOption'
                         fontWeight='semibold'
                         textAlign='center'
                         bgColor='rgba(217, 217, 217, 0.79)'
@@ -79,7 +91,7 @@ const MainDashboardAjoutMenu = () => {
                 </FormControl>
                 <FormControl>
                     <FormLabel fontWeight='bold'>Nombre de choix possible</FormLabel>
-                    <NumberInput min={2} max={6} step={1} >
+                    <NumberInput min={2} max={6} step={1} name='nombreChoix' >
                         <NumberInputField
                             fontWeight='semibold'
                             textAlign='center'
@@ -96,11 +108,11 @@ const MainDashboardAjoutMenu = () => {
             <HStack>
                 <FormControl>
                     <FormLabel fontWeight='bold'>Nom de l&apos;option</FormLabel>
-                    <Input type='text' bgColor='rgba(217, 217, 217, 0.79)' border='1px solid rgba(217, 217, 217, 0.37)'/>
+                    <Input name='nomOption' type='text' bgColor='rgba(217, 217, 217, 0.79)' border='1px solid rgba(217, 217, 217, 0.37)'/>
                 </FormControl>
                 <FormControl>
                     <FormLabel fontWeight='bold'>Ajouter un prix (facultatif)</FormLabel>
-                    <NumberInput min={500} step={50} >
+                    <NumberInput min={500} step={50} name='ajoutPrix' >
                         <NumberInputField
                             fontWeight='semibold'
                             textAlign='center'
@@ -124,6 +136,7 @@ const MainDashboardAjoutMenu = () => {
                 Ajouter un option
             </Button>
             <Button
+                name='submit'
                 type='submit'
                 bgColor='rgba(57, 77, 95, .85)'
                 w='full'
