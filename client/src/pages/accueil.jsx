@@ -4,6 +4,8 @@ import { Header } from "@/components/indexComponent/Indexheader";
 import { MainIndex } from "@/components/indexComponent/mainIndex";
 import {Box} from '@chakra-ui/react';
 import { getGroupeRestaurant } from "@/Services";
+import { useQuery } from "react-query";
+
 
 
 const accueil = () => {
