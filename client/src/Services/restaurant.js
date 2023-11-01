@@ -36,7 +36,7 @@ export function getRestaurant(slug) {
  */
 export function definAdminPassword(slug) {
     return(new Promise(resolve => {
-        axios.put(`http://localhost:8000/api/define-admin-password/${slug}`)
+        axios.put(`http://localhost:8000/api/restaurants/define-admin-password/${slug}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
@@ -44,10 +44,17 @@ export function definAdminPassword(slug) {
 }
 
 //login
-//http://localhost:8000/api/login
+//http://localhost:8000/api/restaurants/login
 
 //register
-//http://localhost:8000/api/sign-up
+export function register(data) {
+    return(new Promise(resolve => {
+        axios.post(`http://localhost:8000/api/restaurants/sign-up`, data)
+        .then(res => res.status === 200 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
 
 //logout
 //http://localhost:8000/api/logout
@@ -57,12 +64,12 @@ export function definAdminPassword(slug) {
 
 /**
  * //supprimer un restaurant
- * @param {String} slug slug du restaurant
+ * @param {String} slug slug du menu
  * @returns 
  */
-export function definAdminPassword(slug) {
+export function deleteRestaurant(slug) {
     return(new Promise(resolve => {
-        axios.put(`http://localhost:8000/api/delete/${slug}`)
+        axios.put(`http://localhost:8000/api/restaurants/delete/${slug}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)

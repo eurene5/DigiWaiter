@@ -57,7 +57,7 @@ export const login = async (req, res, next) => {
 }
 
 export const register = async (req, res) => {
-    var data = {...data}
+    var data = {... req.body}
     if (!req.file) {
         res.send("No file upload")
     } else {
