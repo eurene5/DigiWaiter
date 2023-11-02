@@ -16,6 +16,16 @@ export function getGroupeRestaurant(groupe) {
     }))
 }
 
+export function createRestaurant() {
+    return(new Promise(resolve => {
+        axios.post(`http://localhost:8000/api/restaurants/sign-up`)
+        .then(res => res.status === 200 && res.data)
+        .then(resolve)
+        .catch(console.error)
+    }))
+}
+
+
 /**
  * get tout les menus d'un restaurant
  * @param {String} restaurantslug slug du restaurant

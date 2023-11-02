@@ -11,7 +11,7 @@ const groupesRoutes = new express.Router()
 
 groupesRoutes.get('/', catchError(getAllGroupe))
 groupesRoutes.get('/:slug', catchError(getGroupe))
-groupesRoutes.post('/create', catchError(createGroupe))
+groupesRoutes.post('/create', createGroupe)
 groupesRoutes.put('/update/:slug', catchError(updateGroupe))
 groupesRoutes.delete('/delete/:slug', catchError(deleteGroupe))
 
