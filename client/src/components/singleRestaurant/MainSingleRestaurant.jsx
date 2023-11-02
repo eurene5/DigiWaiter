@@ -3,7 +3,7 @@ import React from "react";
 import ProductModal from "./ProductModal";
 import DrinkModal from "./DrinkModal";
 import { useQueries } from "react-query";
-import { getCategorieMenu, getMenuForOneRestaurant } from "@/Services";
+import { getCategorieMenu, getMenuForOneRestaurant } from "@/Services/menus";
 
 const MainSingleRestaurant = ({restaurant}) => {
 

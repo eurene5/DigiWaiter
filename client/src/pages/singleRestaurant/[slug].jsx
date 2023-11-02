@@ -1,20 +1,21 @@
 import HeaderSingleRestaurant from '@/components/singleRestaurant/HeaderSingleRestaurant'
 import { Footer } from "@/components/indexComponent/Indexfooter";
 import MainSingleRestaurant from '@/components/singleRestaurant/MainSingleRestaurant'
-import { getMenuForOneRestaurant, getOneRestaurant } from '@/Services'
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
+import { getRestaurant } from '@/Services/restaurant';
 
 const Page = () => {
     const router = useRouter()
     const slug = router.query.slug
     const {data: restaurantData, isLoading: restaurantLoading, isError: restaurantError} = useQuery({
         queryKey: ['restaurant', slug],
-        queryFn: () => getOneRestaurant(String(slug)),
+        queryFn: () => getRestaurant(slug),
         enabled: slug !== undefined,
         staleTime: 60_000 * 60,
     })
+
     const restaurant = restaurantData || []
     if(restaurantLoading) {
         return (
@@ -29,12 +30,11 @@ const Page = () => {
             <p>something went wrong</p>
         )
     }
-    // console.log(restaurant);
 
     return (
         <> 
-            <HeaderSingleRestaurant currentPage={restaurant[0]?.name} imageRestaurant={`/./upload/${restaurant[0]?.medias}`} />
-            <MainSingleRestaurant restaurant={restaurant[0]?.name} />
+            <HeaderSingleRestaurant currentPage={restaurantData}/>
+            <MainSingleRestaurant restaurant={restaurantData[0]?.slug} />
             <Footer/>
         </>
     )

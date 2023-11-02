@@ -4,8 +4,18 @@ import { Logo } from "@/components/facture&commande UI/Logo";
 import { Tableau } from "@/components/facture&commande UI/tableau";
 import data from "public/dataFacture.json";
 import { useState } from "react";
+import { Header } from "@/components/indexComponent/Indexheader";
+import { getProductCart } from "@/Services/cart";
+import { useQuery } from "react-query";
 
 const Page = () => {
+
+    const {data: cart} = useQuery({
+        queryKey: ['cartKey'],
+        queryFn: () => getProductCart()
+    })
+
+    console.log(cart);
     const [state, setState] = useState(data)
     const handleCommand = ()=>{
         console.log("Commande envoyer");

@@ -1,7 +1,9 @@
 import { Box, Image, Link } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 
 export const Header = () =>{
+    const router = useRouter()
     return(
         <Box
             as="header"
@@ -14,7 +16,7 @@ export const Header = () =>{
             justifyContent="space-between"
             paddingX="30px"
         >
-            <Link h="full" w="auto" href=""><Image alt="" h="full" w="auto" src="/./assets/indexImages/logo-accueil.png"></Image></Link>
+            <Link h="full" w="auto" onClick={() => router.push('/accueil')}><Image alt="" h="full" w="auto" src="/./assets/indexImages/logo-accueil.png"></Image></Link>
             <Image h='full' w='auto' src="/./assets/indexImages/ispm2.png" alt=''></Image>
         </Box>
     )

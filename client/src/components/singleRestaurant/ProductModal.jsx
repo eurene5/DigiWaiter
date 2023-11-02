@@ -13,22 +13,24 @@ import {
     useDisclosure,
     Image
 } from '@chakra-ui/react'
+import { addToCart } from "@/Services/cart"
 
 export default function ProductModal({menu}){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const size = ['sm']
+    const [count, setCount] = useState(1);
+      
+    const increment = () => {
+        setCount(prevCount => prevCount + 1)
+    }
+    
+    const decrement = () => {
+        if(count>0)   
+            setCount(prevCount => prevCount - 1)
+    }
 
     const NumberCounter = () => {
-        const [count, setCount] = useState(1);
-      
-        const increment = () => {
-            setCount(prevCount => prevCount + 1)
-        }
-        
-        const decrement = () => {
-            if(count>0)   
-                setCount(prevCount => prevCount - 1)
-        }
+
       
         return (
             <div className="mt-5">
@@ -107,9 +109,9 @@ export default function ProductModal({menu}){
                 alignItems="center"
                 justifyContent="center"
                 textAlign="center"
-            >
+            >   
 
-                <Button className="w-full" textColor={"white"} backgroundColor={"green.300"}>
+                <Button className="w-full" textColor={"white"} backgroundColor={"green.300"} onClick={() => {addToCart(menu.slug, count)}}>
                     Ajouter au panier
                 </Button>
             </ModalFooter>

@@ -25,7 +25,7 @@ const ListPlats = () => {
             {platsFavoris.map((plat)=>{
                 if(platsFavoris.indexOf(plat)<4)
                     return(
-                        <Box borderRadius={"5px"} w={"auto"} maxW='150px' key={plat.name} centerContent>
+                        <Box borderRadius={"5px"} w={"auto"} maxW='150px' key={plat.name}>
                             <Image width='156px' height='auto' minH='140px' src={plat.src} borderRadius='5px' />
                             <Text color={"gray.600"} fontWeight='semibold' textAlign='center'>{plat.name}</Text>
                         </Box>

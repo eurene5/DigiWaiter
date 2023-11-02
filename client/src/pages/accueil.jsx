@@ -6,10 +6,8 @@ import {Box} from '@chakra-ui/react';
 import { getGroupeRestaurant } from "@/Services";
 import { useQuery } from "react-query";
 
-
-
 const accueil = () => {
-    const {data} = useQuery("groureRestaurant", () => getGroupeRestaurant('Urbania'))
+    const {data} = useQuery("groureRestaurant", () => getGroupeRestaurant('urbania'))
 
     return(
         <Box bgColor='#FFFFFFF2'>

@@ -12,6 +12,8 @@ const ProductSingleRestaurant = ({onClick, menu}) => {
             bg='#F5F5F5'
             borderColor='#D9D9D9'
             onClick={onClick}
+            display='flex'
+            justifyContent='space-between'
         >
             <Stack>
                 <CardBody textAlign='start' pt='12px' ps='8px' pb='10px'>

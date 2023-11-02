@@ -1,30 +1,40 @@
-import QrReader from 'react-qr-scanner';
-import { useRef } from "react";
-import { useRouter } from "next/router";
 
+import QrReader from 'react-qr-scanner';
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { Box, Container, Link } from '@chakra-ui/react';
 
 const Page = () => {
+    const [isClient, setIsClient ] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+    })
     const router = useRouter()
     const videoRef = useRef(null);
 
-    const handleScan= (data) => {
-        if(data) {
-            console.log('voila', data)
-            router.push('accueil')
+        const handleScan = (data) => {
+            if(data) {
+                console.log('voila', data)
+                router.push('/accueil')
+            }
         }
-    }
-    const handleError = (error) => {
-        console.error('error', error)
-    }
+        const handleError = (error) => {
+            console.error('error', error)
+        }
+    
 
     return (
-        <>
-            <QrReader
-                onScan={handleScan}
-                ref={videoRef}
-                onError={handleError}
-            />
-        </>
+        <Box>
+            {
+                isClient ? (
+                    <QrReader
+                        ref={videoRef}
+                        onScan={handleScan}
+                        onError={handleError}
+                    />
+                    
+            ): ''}
+        </Box>
 
     )
 }

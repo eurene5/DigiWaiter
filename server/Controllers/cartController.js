@@ -16,6 +16,7 @@ const Cart = class {
                 restaurantCart.push(restaurant[id])
             }
             itemList[restaurantName] = restaurantCart
+            console.log(this.items);
         }
         return itemList
     }
@@ -36,7 +37,6 @@ const Cart = class {
         cartItem.price = cartItem.item.price * cartItem.quantity
         this.totalItems += quantity
         this.totalPrice += cartItem.item.price
-    
         return this.items
     }
 
