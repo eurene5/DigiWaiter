@@ -173,16 +173,12 @@ const MainDashboardAjoutMenu = () => {
                         py='60px'
                         px='20px'
                     >
-<<<<<<< HEAD
-                        <Input {...getInputProps()}  yonChange={(e) => handleFileChange(e.target.files)} />
-=======
                         <Input {...getInputProps()} name='medias' />
->>>>>>> 16b70c8da9d41fc8dea598305999d7d7d5c66030
                         <Icon as={BiCamera} w='70px' h='65px' color="#292D32" />
                         <Text fontWeight='bold' color='#292D32'>Ajouter une photo pour illustrer votre menu</Text>
                     </VStack>
                 </Container>
-                <Image src='/./assets/Chief.png' />
+                <Image src='/./assets/Chief.png' alt='' />
             </VStack>
         </HStack>
     </form>

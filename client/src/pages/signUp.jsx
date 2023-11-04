@@ -87,7 +87,7 @@ export default function SignUp(){
                             <InputFrom name = {"password"} onChange = {handleOnChange} type="password" value={"faef"} placeholder={"Entrer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>
                             <InputFrom name = {""}  type="password" onChange = {handleOnChange} value={"faef"} placeholder={"Confirmer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>
                             <InputFrom name = {"medias"} onChange = {handleOnChangeFile} type="file"  placeholder={"Confirmer votre mot de passe"}><Icon as ={LockIcon}/></InputFrom>                                
-                            <Button variant={"solid"}  type="submit" color={"white"} bgColor="rgba(146, 227, 169, 1)" mb={"20px"}>S'inscrire</Button>
+                            <Button variant={"solid"}  type="submit" color={"white"} bgColor="rgba(146, 227, 169, 1)" mb={"20px"}>S&apos;inscrire</Button>
                             </Stack>
                     </form>
                     </Box>
@@ -103,7 +103,7 @@ export default function SignUp(){
                     <Image height={200} width={100} src="/assets/indexImages/logo-accueil.png" alt=''></Image>
                 </Box>
                 <Box mt={"100px"}>
-                    <Image height={100} width={300} src="/illustration.png" />
+                    <Image height={100} width={300} src="/illustration.png" alt='' />
                 </Box>
                 
                 <Flex

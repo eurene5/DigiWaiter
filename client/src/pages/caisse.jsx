@@ -160,7 +160,7 @@ const Caisse = () => {
                                 justifyContent={"center"}
                                 sx={sxBoxClient}
                             >    
-                                <Image width={40} height={40} src={"/90.png"} />
+                                <Image width={40} height={40} src={"/90.png"} alt='' />
                                 <Box w={"70%"}>
                                     <Text textAlign={"center"} fontWeight={"600"}>Nombres de Clients</Text>
                                     <Text textAlign={"center"}>180000</Text>
