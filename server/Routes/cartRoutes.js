@@ -22,9 +22,8 @@ routesCart.get('/', async (req, res) => {
     res.status(200).json(data)
 })
 
-routesCart.post('/add/:slug', async (req, res) => {
+routesCart.get('/add/:slug', async (req, res) => {
     const {slug} = req.params
-<<<<<<< HEAD
     const {quantite} = req.query
     let sessionCart = req.session.cart ? req.session.cart : {}
     let cart = new Cart(sessionCart)
@@ -36,18 +35,6 @@ routesCart.post('/add/:slug', async (req, res) => {
         req.session.cart = cart
         req.session.save()
         return res.status(200).json(req.session.cart)
-=======
-    const { quantite } = req.query
-    let sessionCart = req.session.cart ? req.session.cart : {}
-    let cart = new Cart(sessionCart)
-    const product = await menuModel.findOne({slug : slug})
-    const restaurant = product.restaurant
-    
-    if(product){
-        cart.addToCart(slug, restaurant.name, product, quantite)
-        req.session.cart = sessionCart
-        return res.send(req.session.cart)
->>>>>>> 16b70c8da9d41fc8dea598305999d7d7d5c66030
     } else return res.send("menu not found")
     
 })

@@ -11,7 +11,6 @@ import {
     createmenu,
     deletemenu,
     searchMenu } from "../Controllers/menuController.js"
-import multer from 'multer'
 
 
 
