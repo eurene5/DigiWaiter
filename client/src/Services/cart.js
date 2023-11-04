@@ -7,7 +7,7 @@ import axios from "axios"
  */
 export function addToCart(slug, quantite) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/cart/add/${slug}?quantite=${quantite}`)
+        axios.post(`http://localhost:8000/api/cart/add/${slug}?quantite=${quantite}`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)

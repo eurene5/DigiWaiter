@@ -10,7 +10,7 @@ const HeaderSingleRestaurant = ({currentPage}) => {
             <Box
                 w='100%'
                 h='125px'
-                backgroundImage={`url('/./upload/${currentPage[0].medias}')`}
+                backgroundImage={`url('/./upload/${currentPage.medias}')`}
                 backgroundSize='cover'
             >
                 <Link onClick={() => route.back()} position='absolute' left='12px' top='' className='absolute left-3 top-3'>
@@ -32,7 +32,7 @@ const HeaderSingleRestaurant = ({currentPage}) => {
                     opacity='0.8'
                     textAlign='center'
                 >
-                    {currentPage[0].name}
+                    {currentPage.name}
                 </Heading>
                 <Box my='10px' fontSize='12px' fontWeight='medium' opacity='0.8' display='flex' justifyContent='space-between' px='15px'>
                     <Box>
@@ -43,7 +43,7 @@ const HeaderSingleRestaurant = ({currentPage}) => {
                         <Box display='flex' alignItems='center'>
                             <Image src='/./icon _star_.svg' width='15' height='15' alt='' /> 
                             <Text ms='5px'>
-                                - {currentPage[0].note} <Box as='span' color='#3FCB80' fontWeight='bold'>Excellent</Box>
+                                - {currentPage.note} <Box as='span' color='#3FCB80' fontWeight='bold'>Excellent</Box>
                             </Text>
                         </Box>
                         <Text>Voir les avis sur Kebn&apos;Grill</Text>

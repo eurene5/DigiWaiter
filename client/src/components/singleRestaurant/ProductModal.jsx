@@ -23,6 +23,8 @@ export default function ProductModal({menu}){
     const increment = () => {
         setCount(prevCount => prevCount + 1)
     }
+
+    
     
     const decrement = () => {
         if(count>0)   

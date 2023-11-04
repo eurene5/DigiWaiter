@@ -1,8 +1,5 @@
 import axios from "axios"
-<<<<<<< HEAD
 
-=======
->>>>>>> a259481f68210877796f07fba775726f548fb116
 /**
  * //get tout les restaurants liés a un groupe (food court)
  * @param {String} groupe le nom du groupe

@@ -19,9 +19,9 @@ const ActiveLink = ({children, href, icon}) => {
   }
 
   return (
-    <Link href={`${href}`} onClick={() => router.push(href)} style={color}>
+    <Link href={href} style={color}>
       <HStack spacing='2px'>
-        <Icon as={icon} onClick={() => {handleClick()}} boxSize={5}/><Box as='span'>{children}</Box>
+        <Icon as={icon} onClick={handleClick} boxSize={5}/><Box as='span'>{children}</Box>
       </HStack>
     </Link>
   )

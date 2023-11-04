@@ -21,6 +21,7 @@
     "eslint-config-next": "13.4.12",
     "form-data": "^4.0.0",
     "framer-motion": "^10.15.0",
+    "html5-qrcode": "^2.3.8",
     "next": "^13.5.6",
     "postcss": "8.4.27",
     "qrcode": "^1.5.3",

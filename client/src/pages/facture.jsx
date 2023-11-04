@@ -5,28 +5,33 @@ import { Logo } from "@/components/facture&commande UI/Logo";
 import FooterSingleRestaurant from "@/components/singleRestaurant/FooterSingleRestaurant";
 import data from "public/dataFacture.json"
 import { useState } from "react";
+import { Header } from "@/components/indexComponent/Indexheader";
+import { Footer } from "@/components/indexComponent/Indexfooter";
+import { useRouter } from "next/router";
 
 const Page = () => {
     const [state, setState] = useState(data)
+    const router = useRouter()
     return(
         <Box display="block" mb="120px" justifyContent="center">
+            <Header/>
             <HeaderTitle title="facture"/>
             <Box m="20px">
                 <Logo url={"/assets/logo-restaurantSingle.png"}/>
                 <Tableau data={state} />
             </Box>
-            <Box m="20px">
+            {/* <Box m="20px">
                 <Logo url={"/assets/logo-restaurantSingle.png"}/>
                 <Tableau data={state} />
-            </Box>
+            </Box> */}
             <Box
                 position="fixed" bottom="70px"
                 display="flex" justifyContent="center"
                 width="100%" alignItems="center"
             >
-                <Button  width="90%" size="sm" backgroundColor="#3FCB80" color="White" p="25px 0px 25px 0px">Regler l&apos;adition</Button>
+                <Button  width="90%" size="sm" backgroundColor="#3FCB80" color="White" p="25px 0px 25px 0px" onClick={() => router.push('/checkout')} >Regler l&apos;adition</Button>
             </Box>
-            <FooterSingleRestaurant/>
+            <Footer/>
         </Box>
     )
 }

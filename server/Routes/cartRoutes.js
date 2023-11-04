@@ -7,8 +7,6 @@ const routesCart = new express.Router()
 
 routesCart.get('/', async (req, res) => {
     let sessionCart = req.session.cart
-    console.log(req.session);
-    console.log(sessionCart);
     if (!sessionCart) {
       return res.send({products: null})
     }
@@ -24,7 +22,7 @@ routesCart.get('/', async (req, res) => {
     res.send(data)
 })
 
-routesCart.get('/add/:slug', async (req, res) => {
+routesCart.post('/add/:slug', async (req, res) => {
     const {slug} = req.params
     const { quantite } = req.query
     let sessionCart = req.session.cart ? req.session.cart : {}
@@ -33,8 +31,8 @@ routesCart.get('/add/:slug', async (req, res) => {
     const restaurant = product.restaurant
     
     if(product){
-        const panier = cart.addToCart(slug, restaurant.name, product, quantite)
-        req.session.cart = cart
+        cart.addToCart(slug, restaurant.name, product, quantite)
+        req.session.cart = sessionCart
         return res.send(req.session.cart)
     } else return res.send("menu not found")
     
