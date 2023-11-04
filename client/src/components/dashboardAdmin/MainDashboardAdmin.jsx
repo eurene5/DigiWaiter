@@ -5,9 +5,11 @@ import React, { useState } from 'react'
 import { ImStatsDots }  from 'react-icons/im'
 import SearchBar from '../dashboardCaisse/SearchBar';
 import { FaCoins, FaPlus, FaUsers } from 'react-icons/fa'
+import { useRouter } from 'next/router';
 
 
 const MainDashboardAdmin = () => {
+    const router = useRouter()
     const datas = {
     Lundi: {
         NbDeClient: 969,
@@ -163,6 +165,7 @@ const MainDashboardAdmin = () => {
                     borderRadius='3px'
                     alignItems='center'
                     color={"white"}
+                    onClick={() => router.push("/dashboardAjoutMenu")}
                 >
                     <Icon as={FaPlus}/>
                     <Text fontWeight='bold' >Ajouter un menu à la carte</Text> 

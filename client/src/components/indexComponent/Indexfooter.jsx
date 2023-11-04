@@ -22,11 +22,11 @@ export const Footer =()=>{
             alignItems='center'
             justifyContent='space-between'
         >
-            <Image onClick={() => router.push('/')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _home_.svg"></Image>
+            <Image onClick={() => router.push('/accueil')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _home_.svg"></Image>
             <Image onClick={() => router.push('/')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _heart_.svg"></Image>
             <Image onClick={() => router.push('/')} alt="" h="50px" width="50px" cursor="pointer" src="/./icon _money cashier qr code_.svg"></Image>
-            <Image onClick={() => router.push('/')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _cart_.svg"></Image>
-            <Image onClick={() => router.push('/')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _bills_.svg"></Image>
+            <Image onClick={() => router.push('/commande')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _cart_.svg"></Image>
+            <Image onClick={() => router.push('/facture')} alt="" h="40px" width="40px" cursor="pointer" src="/./icon _bills_.svg"></Image>
         </Box>
     )
 }

@@ -4,8 +4,19 @@ import { Logo } from "@/components/facture&commande UI/Logo";
 import { Tableau } from "@/components/facture&commande UI/tableau";
 import data from "public/dataFacture.json";
 import { useState } from "react";
+import { Header } from "@/components/indexComponent/Indexheader";
+import { getProductCart } from "@/Services/cart";
+import { useQuery } from "react-query";
+import { Footer } from "@/components/indexComponent/Indexfooter";
 
 const Page = () => {
+
+    const {data: cart} = useQuery({
+        queryKey: ['cartKey'],
+        queryFn: () => getProductCart()
+    })
+
+    console.log(cart);
     const [state, setState] = useState(data)
     const handleCommand = ()=>{
         console.log("Commande envoyer");
@@ -32,7 +43,7 @@ const Page = () => {
                 </SimpleGrid>  
             </Box>
 
-            <Box m="20px">
+            {/* <Box m="20px">
                 <Logo url={"/./assets/logo-restaurantSingle.png"}/>
                 <Tableau data={state}/>
                 <SimpleGrid  
@@ -48,12 +59,13 @@ const Page = () => {
                             Commander
                         </Button>
                 </SimpleGrid>  
-            </Box>
+            </Box> */}
             <Box  position="fixed" bottom="70px" 
                     display="flex" justifyContent="center" 
                     width="100%" alignItems="center" >
                     <Button  width="90%" size="sm" backgroundColor="#3FCB80" color="White" p="25px 0px 25px 0px">Tout commander</Button>
             </Box>
+            <Footer/>
         </Box>
     )
 }

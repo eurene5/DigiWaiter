@@ -3,7 +3,7 @@ import React from "react";
 import ProductModal from "./ProductModal";
 import DrinkModal from "./DrinkModal";
 import { useQueries } from "react-query";
-import { getCategorieMenu, getMenuForOneRestaurant } from "@/Services";
+import { getCategorieMenu, getMenuForOneRestaurant } from "@/Services/menus";
 
 const MainSingleRestaurant = ({restaurant}) => {
 
@@ -14,55 +14,6 @@ const MainSingleRestaurant = ({restaurant}) => {
 
   const categories = results[0].data || []
   const menus = results[1].data || []
-
-  // console.log(categories);
-  
-
-
-  // const categories = useQuery(['restaurant'], getCategorieMenu(restaurant), {enabled: !!restaurant})
-  // const menu = useQuery(['restaurant', restaurant], getMenuForOneRestaurant(restaurant), {enabled: !!restaurant})
-
-  
-  // const categorieNameList = () => {
-  //   categories?.map(categorie => {
-  //     return (
-  //       <Tab _selected={{ color: '#3FCB80'}} fontSize='13px'>{categorie.name}</Tab>
-  //     )
-  //   })
-  // }
-  // const categorieList = () => {
-  //   categories.map(categorie => {
-  //     return (
-  //       <TabPanel className='Nouveautés' >
-  //             <Heading 
-  //               as='h5' 
-  //               fontSize='15px' 
-  //               textAlign='start' 
-  //               borderBottom='1px solid #F5F5F5' 
-  //               mb='10px'
-  //               pb='3px'
-  //             >
-  //               {categorie.name}
-  //             </Heading>
-              
-  //             <Box className={`${categorie.name != 'Boissons' ? '' : 'flex flex-wrap justify-center px-[25px]'}`}  >
-  //               {data2.map(menu => {
-  //                 if(menu.categorie.name == categorie.name) {
-  //                   if(categorie.name != 'Boissons') {
-  //                     <ProductModal />
-  //                   } else {
-  //                     <DrinkModal src={`/./upload/${menu.medias}`} price={menu.price} name={menu.name} />
-  //                   }
-  //                 }
-  //               })}
-  //               {/* <ProductModal />
-  //               <ProductModal />
-  //               <ProductModal /> */}
-  //             </Box>
-  //           </TabPanel>
-  //     )
-  //   })
-  // }
 
   return(
     <Box>

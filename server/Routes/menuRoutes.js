@@ -11,6 +11,9 @@ import {
     createmenu,
     deletemenu,
     searchMenu } from "../Controllers/menuController.js"
+import multer from 'multer'
+
+
 
     const storage = multer.diskStorage({
         destination: (req, file, callBack) => {

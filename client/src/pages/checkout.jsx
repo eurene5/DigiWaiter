@@ -1,4 +1,5 @@
 import { HeaderTitle } from "@/components/facture&commande UI/title";
+import { Footer } from "@/components/indexComponent/Indexfooter";
 import { 
     Box,
     Container,
@@ -37,6 +38,7 @@ export default function CheckPayement(){
                     </FormControl>
                 </form>
             </Container>
+            <Footer/>
         </Box>
     )
 }

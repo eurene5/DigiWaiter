@@ -10,7 +10,7 @@ const itemsSchema = new mongoose.Schema({
 const categorieSchema = new mongoose.Schema({
     name : {type : String},
     limite : {type : Number},
-    itmes : [{type : itemsSchema, default : () => ({})}]
+    items : [{type : itemsSchema, default : () => ({})}]
 })
 const optionSchema = new mongoose.Schema({
     categories : [{type : categorieSchema, default : () => ({})}]

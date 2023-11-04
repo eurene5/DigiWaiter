@@ -21,7 +21,7 @@ const ActiveLink = ({children, href, icon}) => {
   return (
     <Link href={href} style={color}>
       <HStack spacing='2px'>
-        <Icon as={icon} onClick={() => {handleClick()}} boxSize={5}/><Box as='span'>{children}</Box>
+        <Icon as={icon} onClick={handleClick} boxSize={5}/><Box as='span'>{children}</Box>
       </HStack>
     </Link>
   )
@@ -45,9 +45,9 @@ const AsideDashboard = () => {
             <Text fontWeight='bold' textAlign='center'>{data.name}</Text>
             <Text fontSize='14px'>
               {
-                categories.map((categorie) => {
+                categories.map((categorie, key) => {
                   return (
-                    <Box as='span' key={categories.lastIndexOf(categorie)}>{categorie}{categories.lastIndexOf(categorie) === categories.length - 1? '' : ' - '}</Box>
+                    <Box as='span' key={key}>{categorie}{categories.lastIndexOf(categorie) === categories.length - 1? '' : ' - '}</Box>
                   )
                 })
               }
@@ -55,10 +55,10 @@ const AsideDashboard = () => {
         </Box>
         <Flex>
           <VStack align='flex-start' spacing='16px'>
-            <ActiveLink href='/caisse' icon={FaCashRegister} >Caisse</ActiveLink>
-            <ActiveLink href='/' icon={PiCookingPotFill} >Cuisine</ActiveLink>
-            <ActiveLink href='/' icon={MdRestaurantMenu} >Menus</ActiveLink>
-            <ActiveLink href='/dashboardAdmin' icon={AiFillDashboard} >Tableau de bord</ActiveLink>
+            <ActiveLink href={'/caisse'} icon={FaCashRegister} >Caisse</ActiveLink>
+            <ActiveLink href={'/dashboardCuisine'} icon={PiCookingPotFill} >Cuisine</ActiveLink>
+            <ActiveLink href={'/MenusDashboard'} icon={MdRestaurantMenu} >Menus</ActiveLink>
+            <ActiveLink href={'/dashboardAdmin'} icon={AiFillDashboard} >Tableau de bord</ActiveLink>
           </VStack>
         </Flex>
     </VStack>
