@@ -1,7 +1,5 @@
 import axios from "axios"
 
-axios.defaults.withCredentials = true
-
 /**
  * Add to cart
  * @param {String} slug slug du produit a ajouter au panier
@@ -10,7 +8,7 @@ axios.defaults.withCredentials = true
  */
 export function addToCart(slug, quantite) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/cart/add/${slug}?quantite=${quantite}`)
+        axios.get(`http://localhost:8000/api/cart/add/${slug}?quantite=${quantite}`, {withCredentials : true})
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
