@@ -22,7 +22,7 @@ routesCart.get('/', async (req, res) => {
     res.send(data)
 })
 
-routesCart.post('/add/:slug', async (req, res) => {
+routesCart.get('/add/:slug', async (req, res) => {
     const {slug} = req.params
     const { quantite } = req.query
     let sessionCart = req.session.cart ? req.session.cart : {}
