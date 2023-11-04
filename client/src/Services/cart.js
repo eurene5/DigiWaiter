@@ -3,6 +3,7 @@ import axios from "axios"
 /**
  * Add to cart
  * @param {String} slug slug du produit a ajouter au panier
+ * @param {String} quantite quantité du produit a acheté
  * @returns 
  */
 export function addToCart(slug, quantite) {
@@ -30,7 +31,7 @@ export function removeToCart(slug, restaurant) {
 }
 
 //get tout les éléments du panier
-export function getProductCart() {
+export function getPoductCart() {
     return (new Promise(resolve => {
         axios.get(`http://localhost:8000/api/cart`)
         .then(res => res.status === 200 && res.data)

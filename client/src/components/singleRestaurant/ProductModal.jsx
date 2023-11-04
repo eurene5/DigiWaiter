@@ -113,7 +113,7 @@ export default function ProductModal({menu}){
                 textAlign="center"
             >   
 
-                <Button className="w-full" textColor={"white"} backgroundColor={"green.300"} onClick={() => {addToCart(menu.slug, count)}}>
+                <Button className="w-full" textColor={"white"} backgroundColor={"green.300"} onClick={async () => {await addToCart(menu.slug, count)}}>
                     Ajouter au panier
                 </Button>
             </ModalFooter>

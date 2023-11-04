@@ -1,4 +1,7 @@
+import multer from "multer"
 import express from "express"
+import path from "path"
+
 import {
     getmenu,
     getmenus,
@@ -8,7 +11,6 @@ import {
     createmenu,
     deletemenu,
     searchMenu } from "../Controllers/menuController.js"
-import multer from 'multer'
 
 
 

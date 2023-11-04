@@ -13,27 +13,28 @@ routesCart.get('/', async (req, res) => {
     let cart = new Cart(sessionCart)
     console.log(cart);
     let itemList = cart.getItems()
-    
+
     let data = {
         itemList : itemList,
         totalItems : cart.totalItems,
         totalPrice : cart.totalPrice
     }
-    res.send(data)
+    res.status(200).json(data)
 })
 
 routesCart.get('/add/:slug', async (req, res) => {
     const {slug} = req.params
-    const { quantite } = req.query
+    const {quantite} = req.query
     let sessionCart = req.session.cart ? req.session.cart : {}
     let cart = new Cart(sessionCart)
     const product = await menuModel.findOne({slug : slug})
-    const restaurant = product.restaurant
-    
+
     if(product){
+        const restaurant = product.restaurant
         cart.addToCart(slug, restaurant.name, product, quantite)
-        req.session.cart = sessionCart
-        return res.send(req.session.cart)
+        req.session.cart = cart
+        req.session.save()
+        return res.status(200).json(req.session.cart)
     } else return res.send("menu not found")
     
 })
