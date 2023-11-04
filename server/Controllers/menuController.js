@@ -24,13 +24,19 @@ export const getCategorie = async (req, res) => {
 export const createmenu = async (req, res) => {
     var data = {...req.body}
     const {slug} = req.params
-    const restaurant = await restaurantModel.find({slug : slug})
-
-    data.slug = data.name.split(' ').join('-')
-    data.restaurant = restaurant
-    const newmenu = new Menu(data)
-    const insertedmenu = await newmenu.save()
-    return res.status(201).json(insertedmenu)
+    const restaurant = await restaurantModel.findOne({slug : slug})
+    const categorie = await categorieModel.findOne({name : data.categorie, 'restaurant.slug' : restaurant.slug})
+    if (!req.file) {
+        res.send("No file upload")
+    } else {
+        data.slug = data.name.split(' ').join('-')
+        data.restaurant = restaurant
+        data.medias = req.file.filename
+        data.categorie = categorie
+        const newmenu = new Menu(data)
+        const insertedmenu = await newmenu.save()
+        return res.status(201).json(insertedmenu)
+    }
 }
 
 export const personnaliseMenu = async (req, res) => {

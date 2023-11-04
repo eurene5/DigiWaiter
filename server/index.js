@@ -23,7 +23,10 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
-app.use(session({secret: 'secret', resave: false, saveUninitialized: false, cookie: { maxAge: 60000 }}))
+app.use(session({secret: 'secret',
+                resave: false,
+                saveUninitialized: false,
+                cookie: { maxAge: 1000 * 60 * 60 * 24 }}))
 
 
 app.use('/api/cart', routesCart)
