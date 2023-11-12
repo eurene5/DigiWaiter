@@ -22,29 +22,33 @@ routesCart.get('/', async (req, res) => {
     res.status(200).json(data)
 })
 
-routesCart.get('/add/:slug', async (req, res) => {
-    const {slug} = req.params
-    const {quantite} = req.query
+routesCart.post('/add', async (req, res) => {
+    const data = {...req.body}
     let sessionCart = req.session.cart ? req.session.cart : {}
     let cart = new Cart(sessionCart)
-    const product = await menuModel.findOne({slug : slug})
+    const product = await menuModel.findOne({slug : data.slug})
 
     if(product){
         const restaurant = product.restaurant
-        cart.addToCart(slug, restaurant.name, product, quantite)
+        cart.addToCart(data.slug, restaurant.name, product, data.quantite)
         req.session.cart = cart
-        req.session.save()
-        return res.status(200).json(req.session.cart)
+        req.session.save((err) => {
+            if (err) {
+              console.error(err);
+            } else {
+              return res.status(200).json(req.session.cart);
+            }
+          })
+       
     } else return res.send("menu not found")
     
 })
 
-routesCart.get('/remove/:slug', function(req, res, next) {
-    const {slug} = req.params
+routesCart.delete('/remove', function(req, res, next) {
+    const data = {...req.body}
     let cart = new Cart(req.session.cart ? req.session.cart : {})
-    let {restaurant} = req.query
   
-    cart.removeToCart(productId, restaurant);
+    cart.removeToCart(data.slug, data.restaurant);
     req.session.cart = cart;
     res.send(req.session.cart)
 });

@@ -6,9 +6,9 @@ import axios from "axios"
  * @param {String} quantite quantité du produit a acheté
  * @returns 
  */
-export function addToCart(slug, quantite) {
+export function addToCart(post) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/cart/add/${slug}?quantite=${quantite}`, {withCredentials : true})
+        axios.post(`http://localhost:8000/api/cart/add/`,post ,{withCredentials : true})
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
@@ -23,7 +23,8 @@ export function addToCart(slug, quantite) {
  */
 export function removeToCart(slug, restaurant) {
     return (new Promise(resolve => {
-        axios.get(`http://localhost:8000/api/cart/remove/${slug}?restaurant=${restaurant}`)
+        // ${slug}?restaurant=${restaurant}
+        axios.delete(`http://localhost:8000/api/cart/remove/`)
         .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)

@@ -32,11 +32,15 @@ const Cart = class {
         let cartItem = restaurantItems[id]
         if(!cartItem)
             cartItem = restaurantItems[id] = {item : item, quantity : 0, price : 0} 
-    
-        cartItem.quantity += quantity
-        cartItem.price = cartItem.item.price * cartItem.quantity
-        this.totalItems += quantity
-        this.totalPrice += cartItem.item.price
+        
+        if(!cartItem.quantity){
+            cartItem.quantity = parseInt(quantity)
+        } else {
+            cartItem.quantity += parseInt(quantity)
+        }
+        cartItem.price = parseInt(cartItem.item.price * cartItem.quantity)
+        this.totalItems += parseInt(quantity)
+        this.totalPrice += parseInt(cartItem.item.price)
         return this.items
     }
 
