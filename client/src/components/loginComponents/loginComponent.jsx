@@ -69,7 +69,7 @@ const LoginAside = () =>{
                 <Image height={90} width={"auto"} src="/./assets/indexImages/logo-accueil.png" alt=''/>
             </Box>
             <Box mt={"100px"}>
-                <Image height={200} width={"auto"} src="/./assets/Illustration.png" />
+                <Image height={200} width={"auto"} src="/./assets/Illustration.png" alt='' />
             </Box>
             
             <Flex

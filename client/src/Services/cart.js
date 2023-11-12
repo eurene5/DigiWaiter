@@ -35,7 +35,7 @@ export function removeToCart(slug, restaurant) {
 export function getPoductCart() {
     return (new Promise(resolve => {
         axios.get(`http://localhost:8000/api/cart`)
-        .then(res => res.status === 2000 && res.data)
+        .then(res => res.status === 200 && res.data)
         .then(resolve)
         .catch(console.error)
     }))

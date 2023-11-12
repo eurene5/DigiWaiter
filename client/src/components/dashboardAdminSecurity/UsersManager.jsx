@@ -38,7 +38,7 @@ const UserAddModal =() =>{
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Ajout d'un utilisateur</ModalHeader>
+                <ModalHeader>Ajout d&apos;un utilisateur</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     <Box ml="32px" display="flex" justifyContent="center">
@@ -78,7 +78,7 @@ const UsersManager = () =>{
             <HStack spacing='2px'><Text fontWeight="semibold" color="#394D5F"><Icon as={BiBarChart}/> Gérer les utilisateurs</Text></HStack>
             <Divider w="60%"/>
             <Grid mt="15" w="80%" templateColumns='repeat(2, 1fr)'>
-                <GridItem display="flex" justifyContent="left"> <Text fontWeight="semibold">Nom d'utilisateur</Text> </GridItem>
+                <GridItem display="flex" justifyContent="left"> <Text fontWeight="semibold">Nom d&apos;utilisateur</Text> </GridItem>
                 <GridItem display="flex" justifyContent="left"> <Text fontWeight="semibold">Mot de passe</Text> </GridItem>
             </Grid>
             <UserInputs width="80%"/>
